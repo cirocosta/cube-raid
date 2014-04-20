@@ -1,15 +1,8 @@
 #include <stdio.h>
+#include "linkedlist.h"
 
-/**
- * se P é uma lista, então:
- * -    p == NULL ou
- * -    p->prox é uma lista
- */
 
-typedef struct Celula {
-    int conteudo;
-    struct Celula *prox;
-} Celula;
+struct Celula;
 
 /**
  * Uma lista pode ter cabeca ou nao.

@@ -1,10 +1,10 @@
-all:compile
+all:linkedlist
 	gcc src/main.c linkedlist.o -o main
 
-compile:
+linkedlist:
 	gcc -c src/linkedlist.c
 
-test:compile
+test:linkedlist
 	gcc test/tests.c linkedlist.o -o tests
 	./tests
 
