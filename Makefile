@@ -9,6 +9,7 @@ models:lib
 
 lib:
 	gcc -c src/lib/position.c -o src/lib/position.o
+	gcc -c src/lib/circularbuffer.c -o src/lib/circularbuffer.o
 
 clean:
 	rm main

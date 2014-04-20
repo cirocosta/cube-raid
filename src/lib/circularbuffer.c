@@ -2,16 +2,8 @@
 // #include <stdio.h>
 #include "circularbuffer.h"
 
-// typedef union {
-//     int value;
-// } CBData;
-
-// typedef struct {
-//     int size;
-//     int start;
-//     int end;
-//     CBData *elems;
-// } CircularBuffer;
+union CBData;
+struct CircularBuffer;
 
 void CB_init(CircularBuffer *cb, int size)
 {
@@ -49,7 +41,7 @@ int CB_isEmpty(CircularBuffer *cb)
 // EXEMPLO //
 /////////////
 
-int main(int argc, char const *argv[])
+// int main(int argc, char const *argv[])
 // {
 //     CircularBuffer cb;
 //     CBData elem = {0};

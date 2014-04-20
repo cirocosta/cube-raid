@@ -1,4 +1,12 @@
 /**
+ * CBData trata-se de um elemento de tipo variavel dada a definicao dos
+ * tipos possiveis do union.
+ */
+typedef union {
+    int value;
+} CBData;
+
+/**
  * Tipo do Buffer circular. Armazena seu tamanho, um inicio, o fim e um
  * array de elementos mantidos pelo mesmo tendo seu tamanho settado
  * dinamicamente em sua inicializacao.
@@ -9,14 +17,6 @@ typedef struct {
     int end;
     CBData *elems;
 } CircularBuffer;
-
-/**
- * CBData trata-se de um elemento de tipo variavel dada a definicao dos
- * tipos possiveis do union.
- */
-typedef union {
-    int value;
-} CBData;
 
 /**
  * Inicializa o buffer circular. Recebe um CB e o tamanho do buffer.
