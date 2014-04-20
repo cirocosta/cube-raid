@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 
 /**
  * se P é uma lista, então:
@@ -30,12 +29,4 @@ void imprime(Celula *ini)
     for (p = ini->prox; p != NULL; p = p->prox) {
         printf("%d\n", p->conteudo);
     }
-}
-
-int main(int argc, char const *argv[])
-{
-
-    Celula *ini = (Celula*) malloc(sizeof(Celula));
-    ini->prox = NULL;
-    return 0;
 }
