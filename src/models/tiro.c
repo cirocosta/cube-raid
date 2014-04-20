@@ -1,8 +1,8 @@
+#include "../lib/position.h"
+
 typedef struct Tiro
 {
-    int posz;
-    int posx;
-    int posy;
+    Position *pos;
     int vel;
     int orientation;
 } Tiro;

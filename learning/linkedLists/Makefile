@@ -10,3 +10,4 @@ test:linkedlist
 
 clean:
 	rm tests main *.o
+

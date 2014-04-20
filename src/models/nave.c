@@ -1,8 +1,8 @@
+#include "../lib/position.h"
+
 typedef struct Nave
 {
-    int posz;
-    int posx;
-    int posy;
+    Position *pos;
     int vel;
     int orientation;
     int damage;

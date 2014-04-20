@@ -1,8 +1,11 @@
+#ifndef DEFESA_H
+#define DEFESA_H
+
 typedef struct Defesa
 {
-    int posz;
-    int posx;
-    int posy;
+    Position *pos;
     int damage;
     /* and some attack params*/
 } Defesa;
+
+#endif
