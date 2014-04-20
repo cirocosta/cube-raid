@@ -13,4 +13,3 @@ lib:
 clean:
 	rm main
 	find . -name \*.o -delete
-
