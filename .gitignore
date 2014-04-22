@@ -1,2 +1,8 @@
 *.o
 *.out
+
+# SublimeText project files
+*.sublime*
+
+# Junk files
+*.pdf
