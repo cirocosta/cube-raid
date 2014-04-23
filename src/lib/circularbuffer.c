@@ -29,10 +29,11 @@ void CB_write(CircularBuffer *cb, CBData *elem)
         cb->start = (cb->start + 1) % cb->size;
 }
 
-void CB_read(CircularBuffer *cb, CBData *elem)
+CBData CB_read(CircularBuffer *cb)
 {
-    *elem = cb->elems[cb->start];
+    CBData element = cb->elems[cb->start];
     cb->start = (cb->start + 1) % cb->size;
+    return element;
 }
 
 int CB_isEmpty(CircularBuffer *cb)

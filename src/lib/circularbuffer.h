@@ -38,7 +38,7 @@ void CB_free(CircularBuffer *cb);
  */
 void CB_write(CircularBuffer *cb, CBData *elem);
 
-void CB_read(CircularBuffer *cb, CBData *elem);
+CBData CB_read(CircularBuffer *cb);
 
 int CB_isEmpty(CircularBuffer *cb);
 

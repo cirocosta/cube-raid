@@ -41,15 +41,25 @@ void test_write()
     tear_down();
 }
 
-// void test_read()
-// {
+void test_read()
+{
+    set_up();
 
-// }
+    CBData *element = malloc(sizeof(element));
+    element->value = 10;
+    CB_write(cb, element);
+
+    assert(CB_read(cb).value == element->value);
+
+    tear_down();
+}
 
 int main(int argc, char const *argv[])
 {
     test_initialization();
     test_write();
+    test_read();
+
 
     return 0;
 }
