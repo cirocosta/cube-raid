@@ -1,11 +1,6 @@
-/**
- * CBData trata-se de um elemento de tipo variavel dada a definicao dos
- * tipos possiveis do union.
- */
-typedef union {
-    int value;
-} CBData;
-
+#ifndef TIPOS_H
+#include "tipos.h"
+#endif
 /**
  * Tipo do Buffer circular. Armazena seu tamanho, um inicio, o fim e um
  * array de elementos mantidos pelo mesmo tendo seu tamanho settado

@@ -37,6 +37,7 @@ void test_write()
 
     element->value = 10;
     CB_write(cb, element);
+
     assert(cb->elems[0].value == element->value);
 
     tear_down();
