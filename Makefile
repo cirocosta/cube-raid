@@ -1,18 +1,26 @@
-all:models
-	gcc -o main src/main.c src/lib/position.o src/models/cenario.o
+CFLAGS = -g -Wall -pedantic -ansi -Wno-unused-result
+CC = gcc
+################################################
+LIB_DIR = src/lib
+MODEL_DIR = src/models
 
-models:lib
-	gcc -c src/models/cenario.c -o src/models/cenario.o
-	gcc -c src/models/nave.c -o src/models/nave.o
-	gcc -c src/models/defesa.c -o src/models/defesa.o
-	gcc -c src/models/tiro.c -o src/models/tiro.o
+all:models
+	$(CC) $(CFLAGS) -o main src/main.c $(LIB_DIR)/lib.a 
 
 lib:
-	gcc -c src/lib/position.c -o src/lib/position.o
-	gcc -c src/lib/circularbuffer.c -o src/lib/circularbuffer.o
+	$(CC) $(CFLAGS) -c -o $(LIB_DIR)/position.o $(LIB_DIR)/position.c
+	$(CC) $(CFLAGS) -c -o $(LIB_DIR)/circularbuffer.o $(LIB_DIR)/circularbuffer.c
+	ar rvs $(LIB_DIR)/lib.a $(LIB_DIR)/position.o $(LIB_DIR)/circularbuffer.o
 
-test:lib
-	gcc -o test/test_circularbuffer test/test_circularbuffer.c src/lib/circularbuffer.o
+models: lib
+	$(CC) $(CFLAGS) -c -o $(MODEL_DIR)/cenario.o $(MODEL_DIR)/cenario.c $(LIB_DIR)/lib.a 
+	$(CC) $(CFLAGS) -c -o $(MODEL_DIR)/nave.o $(MODEL_DIR)/nave.c $(LIB_DIR)/lib.a
+	$(CC) $(CFLAGS) -c -o $(MODEL_DIR)/defesa.o $(MODEL_DIR)/defesa.c $(LIB_DIR)/lib.a
+	$(CC) $(CFLAGS) -c -o $(MODEL_DIR)/tiro.o $(MODEL_DIR)/tiro.c $(LIB_DIR)/lib.a
+
+TEST_DIR = test
+test: lib
+	$(CC) $(CFLAGS) -o $(TEST_DIR)/test_circularbuffer $(TEST_DIR)/test_circularbuffer.c $(LIB_DIR)/lib.a
 
 clean:
 	rm main

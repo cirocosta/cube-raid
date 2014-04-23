@@ -5,4 +5,8 @@
  * representação pode ser liberada (free).
  */
 
-
+int main(int argc, char const *argv[])
+{
+	
+	return 0;
+}

@@ -31,9 +31,10 @@ void test_initialization()
 
 void test_write()
 {
+    CBData *element = malloc(sizeof(element));
+
     set_up();
 
-    CBData *element = malloc(sizeof(element));
     element->value = 10;
     CB_write(cb, element);
     assert(cb->elems[0].value == element->value);
@@ -43,9 +44,10 @@ void test_write()
 
 void test_read()
 {
+    CBData *element = malloc(sizeof(element));
+    
     set_up();
 
-    CBData *element = malloc(sizeof(element));
     element->value = 10;
     CB_write(cb, element);
 

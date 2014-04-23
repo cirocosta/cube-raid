@@ -11,8 +11,6 @@ void CB_init(CircularBuffer *cb, int size)
     cb->start = 0;
     cb->end = 0;
     cb->elems = (CBData*) calloc(cb->size, sizeof(CBData));
-
-    // cb->elems = malloc(sizeof(CBData) * size);
 }
 
 void CB_free(CircularBuffer *cb)
