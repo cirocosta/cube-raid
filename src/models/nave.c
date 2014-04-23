@@ -1,4 +1,6 @@
-#include "../lib/position.h"
+#ifndef TIPOS_H
+#include "../lib/tipos.h"
+#endif
 
 typedef struct Nave
 {
