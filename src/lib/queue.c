@@ -24,7 +24,7 @@ void queueDump(Queue q)
 	    
 		while (p != NULL)
 		{
-			printf("%p     %5d      %p\n", (void*)p, p->conteudo.tipo, (void*)p->prox);
+			printf("%p     %5d      %p\n", (void*)p, p->conteudo.value, (void*)p->prox);
 			p = p->prox;
 		}
 		printf("\n");

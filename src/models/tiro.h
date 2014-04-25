@@ -1,9 +1,10 @@
 #ifndef TIRO_H
 #define TIRO_H
+#include "../lib/position.h"
 
 typedef struct Tiro
 {
-    Position *pos;
+    Position pos;
     int vel;
     int orientation;
 } Tiro;

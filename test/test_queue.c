@@ -26,24 +26,24 @@ void test_init()
 
 void test_put()
 {
-    CBData *v1 = malloc(sizeof *v1);
-    CBData *v2 = malloc(sizeof *v2);
+    CBData *v = malloc(sizeof *v);
 
     set_up();
 
-    v1->value = 10;
-    v2->value = 20;
-    queuePut(q, *v1);
-    queuePut(q, *v2);
+    v->value = 10;
+    queuePut(q, *v);
 
+    v->value = 20;
+    queuePut(q, *v);
+
+    assert(q->ini->conteudo.value == 10);
     assert(q->fim->conteudo.value == 20);
     assert(q->fim->prox == NULL);
-    assert(q->ini->prox->conteudo.value == v2->value);
+    assert(q->ini->prox->conteudo.value == v->value);
 
     tear_down();
 
-    free(v1);
-    free(v2);
+    free(v);
 }
 
 void test_get()
@@ -68,8 +68,8 @@ void test_get()
     assert(v2.value == 20);
     assert(q->ini == NULL);
 
-    /*free(v1);
-    free(v2);*/
+    free(p1);
+    free(p2);
 
     tear_down();
 }
