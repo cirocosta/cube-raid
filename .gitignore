@@ -6,3 +6,6 @@
 
 # Junk files
 *.pdf
+
+# Build files
+*.a

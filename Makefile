@@ -21,6 +21,9 @@ models: lib
 TEST_DIR = test
 test: lib
 	$(CC) $(CFLAGS) -o $(TEST_DIR)/test_circularbuffer $(TEST_DIR)/test_circularbuffer.c $(LIB_DIR)/lib.a
+	$(CC) $(CFLAGS) -o $(TEST_DIR)/test_queue $(TEST_DIR)/test_queue.c $(LIB_DIR)/lib.a
+	./test/test_circularbuffer
+	./test/test_queue
 
 clean:
 	rm -f main

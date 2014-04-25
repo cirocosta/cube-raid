@@ -5,18 +5,17 @@
 #include "tipos.h"
 #endif
 
-typedef struct queueNode *Link;
-typedef struct queue *Queue;
+#ifndef QUEUE_H
+#include "queue.h"
+#endif
 
-struct queueNode {
-	CBData conteudo;
-	Link prox;
-};
-
-struct queue {
-	Link ini;
-	Link fim;
-};
+Queue queueInit()
+{
+	Queue q = malloc(sizeof *q);
+	q->ini = q->fim = NULL;
+	
+	return q;
+}
 
 void queueDump(Queue q)
 {
@@ -38,23 +37,12 @@ void queueDump(Queue q)
 	}	
 }
 
-Queue queueInit()
-{
-	Queue q = malloc(sizeof *q);
-	q->ini = q->fim = NULL;
-	
-	printf("\nInicializando uma fila: %p\n", (void*)q);
-	
-	return q;
-}
 
 void queuePut(Queue q, CBData v)
 {
 	Link p = malloc(sizeof *p);
 	p->conteudo = v;
 	p->prox = NULL;
-		
-	printf("\nColocando na fila: %d\n", p->conteudo.tipo);	
 		
 	if (q->ini == NULL)
 	{
@@ -82,12 +70,11 @@ CBData queueGet(Queue q)
 	q->ini = q->ini->prox;
 	
 	free(p);
-	printf("\nRetirando o primeiro item da fila: %d\n", conteudo.tipo);
 	
 	return conteudo;
 }
 
-int queueEmpty(Queue q)
+int queueIsEmpty(Queue q)
 {
 	return q->ini == NULL;
 }
@@ -101,7 +88,4 @@ void queueFree(Queue q)
 		free(p);
 	}
 	free(q);
-	
-	printf("\nA fila foi liberada da memoria\n");
-	
 }

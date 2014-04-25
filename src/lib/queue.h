@@ -2,11 +2,26 @@
 #include "tipos.h"
 #endif
 
-typedef struct queue *Queue;
+#ifndef QUEUE_H
+#define QUEUE_H
+#endif
+
+typedef struct queueNode* Link;
+typedef struct queue* Queue;
+
+struct queueNode {
+	CBData conteudo;
+	Link prox;
+};
+
+struct queue {
+	Link ini;
+	Link fim;
+};
 
 Queue queueInit();
 void queuePut(Queue q, CBData v);
 CBData queueGet(Queue q);
-int queueEmpty(Queue q);
+int queueIsEmpty(Queue q);
 void queueFree(Queue q);
 void queueDump(Queue q);
