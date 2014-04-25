@@ -6,8 +6,8 @@ MODEL_DIR = src/models
 MAP_DIR = src/maps
 TEST_DIR = test
 
-all: models
-	$(CC) $(CFLAGS) -o main src/main.c $(LIB_DIR)/lib.a
+all: models maps
+	$(CC) $(CFLAGS) -o main.out src/main.c $(MAP_DIR)/map1.o $(MODEL_DIR)/models.a $(LIB_DIR)/lib.a
 
 lib: $(LIB_DIR)/circularbuffer.o $(LIB_DIR)/queue.o $(LIB_DIR)/tipos.h
 	$(CC) $(CFLAGS) -c -o $(LIB_DIR)/circularbuffer.o $(LIB_DIR)/circularbuffer.c
@@ -20,6 +20,7 @@ models: lib
 	$(CC) $(CFLAGS) -c -o $(MODEL_DIR)/nave.o $(MODEL_DIR)/nave.c
 	$(CC) $(CFLAGS) -c -o $(MODEL_DIR)/defesa.o $(MODEL_DIR)/defesa.c
 	$(CC) $(CFLAGS) -c -o $(MODEL_DIR)/tiro.o $(MODEL_DIR)/tiro.c
+	ar rvs $(MODEL_DIR)/models.a $(MODEL_DIR)/cenario.o $(MODEL_DIR)/nave.o $(MODEL_DIR)/defesa.o $(MODEL_DIR)/tiro.o
 
 maps: lib
 	$(CC) $(CFLAGS) -c -o $(MAP_DIR)/map1.o $(MAP_DIR)/map1.c
