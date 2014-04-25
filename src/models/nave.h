@@ -6,10 +6,10 @@ typedef struct Nave
 {
     Position pos;
     int vel;
-    int orientation;
-    int damage;
+    Position orientation;
+    int hp;
 } Nave;
 
-Nave NAVE_create(Position pos, int vel, int orientation, int damage);
+Nave NAVE_create(Position pos, int vel, Position orientation, int hp);
 
 #endif

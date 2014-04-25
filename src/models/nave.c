@@ -1,14 +1,14 @@
 #include "../lib/position.h"
 #include "nave.h"
 
-Nave NAVE_create(Position pos, int vel, int orientation, int damage)
+Nave NAVE_create(Position pos, int vel, Position orientation, int hp)
 {
 	Nave *nave = malloc(sizeof(*nave));
 
 	nave->pos = pos;
 	nave->vel = vel;
 	nave->orientation = orientation;
-	nave->damage = damage;
+	nave->hp = hp;
 
 	return *nave;
 }
