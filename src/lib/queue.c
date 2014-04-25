@@ -1,13 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-#ifndef TIPOS_H
 #include "tipos.h"
-#endif
-
-#ifndef QUEUE_H
 #include "queue.h"
-#endif
 
 Queue queueInit()
 {

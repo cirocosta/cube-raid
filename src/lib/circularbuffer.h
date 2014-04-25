@@ -1,6 +1,4 @@
-#ifndef TIPOS_H
 #include "tipos.h"
-#endif
 /**
  * Tipo do Buffer circular. Armazena seu tamanho, um inicio, o fim e um
  * array de elementos mantidos pelo mesmo tendo seu tamanho settado

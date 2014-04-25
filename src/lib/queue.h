@@ -1,6 +1,4 @@
-#ifndef TIPOS_H
 #include "tipos.h"
-#endif
 
 #ifndef QUEUE_H
 #define QUEUE_H
