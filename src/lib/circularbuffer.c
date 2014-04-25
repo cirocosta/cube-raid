@@ -1,5 +1,3 @@
-#include <stdlib.h>
-#include <stdio.h>
 #include "circularbuffer.h"
 
 union CBData;

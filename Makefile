@@ -34,14 +34,19 @@ maps: lib models
 test: lib models maps
 	@$(CC) $(CFLAGS) -o $(TEST_DIR)/test_circularbuffer.out $(TEST_DIR)/test_circularbuffer.c $(LIB_DIR)/lib.a
 	@$(CC) $(CFLAGS) -o $(TEST_DIR)/test_queue.out $(TEST_DIR)/test_queue.c $(LIB_DIR)/lib.a
+	@$(CC) $(CFLAGS) -o $(TEST_DIR)/test_position.out $(TEST_DIR)/test_position.c $(LIB_DIR)/lib.a
+	@$(CC) $(CFLAGS) -o $(TEST_DIR)/test_nave.out $(TEST_DIR)/test_nave.c $(LIB_DIR)/lib.a $(MODEL_DIR)/models.a
 	@echo [TEST] Building tests
 	@./test/test_circularbuffer.out
-	@echo [TEST] CircularBuffer [OK]
+	@echo [TEST-LIB] CircularBuffer [OK]
 	@./test/test_queue.out
-	@echo [TEST] Queues [OK]
+	@echo [TEST-LIB] Queues [OK]
+	@./test/test_position.out
+	@echo [TEST-LIB] Position [OK]
+	@./test/test_nave.out
+	@echo [TEST-MODEL] Nave [OK]
 
 clean:
-	rm -f main
 	find . -name \*.o -delete
 	find . -name \*.a -delete
 	find . -name \*.out -delete

@@ -1,3 +1,7 @@
+#ifndef CIRCULARBUFFER_H
+#define CIRCULARBUFFER_H
+#include <stdlib.h>
+#include <stdio.h>
 #include "tipos.h"
 /**
  * Tipo do Buffer circular. Armazena seu tamanho, um inicio, o fim e um
@@ -34,5 +38,4 @@ void CB_write(CircularBuffer *cb, CBData *elem);
 CBData CB_read(CircularBuffer *cb);
 
 int CB_isEmpty(CircularBuffer *cb);
-
-
+#endif
