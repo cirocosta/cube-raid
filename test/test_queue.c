@@ -88,6 +88,7 @@ int main(int argc, char const *argv[])
     test_init();
     test_put();
     test_get();
+    test_isEmpty();
 
     return 0;
 }
