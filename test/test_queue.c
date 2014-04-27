@@ -30,16 +30,16 @@ void test_put()
 
     set_up();
 
-    v->value = 10;
+    v->elemento.value = 10;
     queuePut(q, *v);
 
-    v->value = 20;
+    v->elemento.value = 20;
     queuePut(q, *v);
 
-    assert(q->ini->conteudo.value == 10);
-    assert(q->fim->conteudo.value == 20);
+    assert(q->ini->conteudo.elemento.value == 10);
+    assert(q->fim->conteudo.elemento.value == 20);
     assert(q->fim->prox == NULL);
-    assert(q->ini->prox->conteudo.value == v->value);
+    assert(q->ini->prox->conteudo.elemento.value == v->elemento.value);
 
     tear_down();
 
@@ -54,18 +54,18 @@ void test_get()
 
     set_up();
 
-    p1->value = 10;
-    p2->value = 20;
+    p1->elemento.value = 10;
+    p2->elemento.value = 20;
     queuePut(q, *p1);
     queuePut(q, *p2);
 
     /* Testa queueGet() */
     v1 = queueGet(q);
-    assert(q->ini->conteudo.value == 20);
+    assert(q->ini->conteudo.elemento.value == 20);
     v2 = queueGet(q);
 
-    assert(v1.value == 10);
-    assert(v2.value == 20);
+    assert(v1.elemento.value == 10);
+    assert(v2.elemento.value == 20);
     assert(q->ini == NULL);
 
     free(p1);

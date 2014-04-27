@@ -8,27 +8,6 @@ Queue queueInit()
 	return q;
 }
 
-void queueDump(Queue q)
-{
-	Link p = q->ini;
-
-	if (p == NULL)
-		printf("\n[DUMP] A fila esta vazia\n");
-	else
-	{
-		printf("\n[DUMP] Conteudo da lista:\n");
-	    printf("endereco      elemento   prox\n");
-
-		while (p != NULL)
-		{
-			printf("%p     %5d      %p\n", (void*)p, p->conteudo.value, (void*)p->prox);
-			p = p->prox;
-		}
-		printf("\n");
-	}
-}
-
-
 void queuePut(Queue q, CBData v)
 {
 	Link p = malloc(sizeof *p);

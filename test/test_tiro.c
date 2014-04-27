@@ -6,7 +6,8 @@
 
 void test_create()
 {
-    Tiro tiro = TIRO_create(POS_create(1,2,3), 10, POS_create(10, 20, 30));
+    Tiro tiro = TIRO_create(POS_create(1,2,3), 10,
+                            POS_create(10, 20, 30));
 
     assert(tiro.pos.x == 1);
     assert(tiro.pos.y == 2);

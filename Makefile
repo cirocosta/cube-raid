@@ -38,6 +38,7 @@ test: lib models maps
 	@$(CC) $(CFLAGS) -o $(TEST_DIR)/test_nave.out $(TEST_DIR)/test_nave.c $(LIB_DIR)/lib.a $(MODEL_DIR)/models.a
 	@$(CC) $(CFLAGS) -o $(TEST_DIR)/test_defesa.out $(TEST_DIR)/test_defesa.c $(LIB_DIR)/lib.a $(MODEL_DIR)/models.a
 	@$(CC) $(CFLAGS) -o $(TEST_DIR)/test_tiro.out $(TEST_DIR)/test_tiro.c $(LIB_DIR)/lib.a $(MODEL_DIR)/models.a
+	@$(CC) $(CFLAGS) -o $(TEST_DIR)/test_cenario.out $(TEST_DIR)/test_cenario.c $(LIB_DIR)/lib.a $(MODEL_DIR)/models.a
 	@echo [TEST] Building tests
 	@./test/test_circularbuffer.out
 	@echo [TEST-LIB] CircularBuffer [OK]
@@ -51,6 +52,8 @@ test: lib models maps
 	@echo [TEST-MODEL] Defesa [OK]
 	@./test/test_tiro.out
 	@echo [TEST-MODEL] Tiro [OK]
+	@./test/test_cenario.out
+	@echo [TEST-MODEL] Cenario [OK]
 
 clean:
 	find . -name \*.o -delete

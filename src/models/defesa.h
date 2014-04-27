@@ -6,7 +6,6 @@ typedef struct Defesa
 {
     Position pos;
     int damage;
-    /* and some attack params*/
 } Defesa;
 
 Defesa DEFESA_create(Position pos, int damage);

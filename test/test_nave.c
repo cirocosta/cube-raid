@@ -6,7 +6,8 @@
 
 void test_create()
 {
-    Nave n = NAVE_create(POS_create(1,2,3), 10, POS_create(10, 20, 30), 30);
+    Nave n = NAVE_create(POS_create(1,2,3), 10,
+                         POS_create(10, 20, 30), 30);
 
     assert(n.pos.x == 1);
     assert(n.pos.y == 2);

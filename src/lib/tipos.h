@@ -11,10 +11,15 @@
 typedef enum { NAVE, TIRO, DEFESA } Tipo;
 
 typedef union {
-	int value;
-	Defesa defesa;
-	Tiro tiro;
-	Nave nave;
+    int value;
+    Defesa defesa;
+    Tiro tiro;
+    Nave nave;
+} Elemento;
+
+typedef struct {
+    int type;
+    Elemento elemento;
 } CBData;
 
 #endif
