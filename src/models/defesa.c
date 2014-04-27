@@ -1,4 +1,12 @@
 #include "../lib/tipos.h"
 #include "defesa.h"
 
-struct Defesa;
+Defesa DEFESA_create(Position pos, int damage)
+{
+    Defesa *defesa = malloc(sizeof(*defesa));
+
+    defesa->pos = pos;
+    defesa->damage = damage;
+
+    return *defesa;
+}

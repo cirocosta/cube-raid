@@ -6,7 +6,9 @@ typedef struct Tiro
 {
     Position pos;
     int vel;
-    int orientation;
+    Position orientation;
 } Tiro;
+
+Tiro TIRO_create(Position pos, int vel, Position orientation);
 
 #endif

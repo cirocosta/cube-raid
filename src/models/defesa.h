@@ -9,4 +9,6 @@ typedef struct Defesa
     /* and some attack params*/
 } Defesa;
 
+Defesa DEFESA_create(Position pos, int damage);
+
 #endif
