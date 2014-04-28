@@ -8,6 +8,12 @@ typedef struct Defesa
     int damage;
 } Defesa;
 
+/**
+ * Metodo construtor para o elemento de tipo Defesa
+ * @param  pos    Elemento de posicao
+ * @param  damage Dano
+ * @return        O objeto criado se a alocacao acontecer com sucesso
+ */
 Defesa DEFESA_create(Position pos, int damage);
 
 #endif

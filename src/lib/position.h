@@ -3,12 +3,23 @@
 
 #include <stdlib.h>
 
+/**
+ * Estrutura de posicao utilizado pelos modulos que necessitam de mais
+ * de uma coordenada.
+ */
 typedef struct pos {
     int x;
     int y;
     int z;
 } Position;
 
+/**
+ * Metodo construtor de uma Position
+ * @param  x distancia lateral (sendo 0 o meio)
+ * @param  y distancia para frente (sendo 0 o inicio)
+ * @param  z posicao vertical (altura)
+ * @return   um objeto Position
+ */
 Position POS_create(int x, int y, int z);
 
 #endif

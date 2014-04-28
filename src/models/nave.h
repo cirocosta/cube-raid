@@ -10,8 +10,20 @@ typedef struct Nave
     int hp;
 } Nave;
 
+/**
+ * Metodo construtor para o objeto Nave
+ * @param  pos         Objeto posicao em xyz
+ * @param  vel         velocidade
+ * @param  orientation Orientacao em xyz
+ * @param  hp          vida
+ * @return             Objeto criado
+ */
 Nave NAVE_create(Position pos, int vel, Position orientation, int hp);
 
+/**
+ * Destroi um objeto do tipo Nave (desaloca memoria)
+ * @param nave [description]
+ */
 void NAVE_destroy(Nave *nave);
 
 #endif

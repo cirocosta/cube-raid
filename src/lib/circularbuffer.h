@@ -35,7 +35,17 @@ void CB_free(CircularBuffer *cb);
  */
 void CB_write(CircularBuffer *cb, CBData *elem);
 
+/**
+ * Le um CBData de um buffer circular.
+ * @param  cb endereco de memoria de um CB
+ * @return    um CBData que o CB leu
+ */
 CBData CB_read(CircularBuffer *cb);
 
+/**
+ * Verifica se um CB esta vazio ou nao.
+ * @param  cb endereco de memoria de um CB
+ * @return    0 | 1 se esta vazio ou nao
+ */
 int CB_isEmpty(CircularBuffer *cb);
 #endif
