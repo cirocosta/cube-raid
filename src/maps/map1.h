@@ -4,5 +4,5 @@
 #include "../lib/queue.h"
 #include "../lib/tipos.h"
 
-Queue generate_map();
+Queue MAPS_generate_map();
 #endif

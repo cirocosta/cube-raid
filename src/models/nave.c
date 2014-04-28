@@ -12,3 +12,9 @@ Nave NAVE_create(Position pos, int vel, Position orientation, int hp)
 
 	return *nave;
 }
+
+void NAVE_destroy(Nave *nave)
+{
+    free(&nave->pos);
+    free(nave);
+}

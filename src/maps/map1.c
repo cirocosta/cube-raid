@@ -1,14 +1,29 @@
 #include "map1.h"
 
-Queue generate_map()
+Queue MAPS_generate_map()
 {
-    Queue map1 = queueInit();
+    Queue mapa = queueInit();
     CBData *elemento = malloc(sizeof *elemento);
 
     elemento->elemento.nave = NAVE_create(POS_create(0, 0, 0), 10,
                                  POS_create(10, 10, 10), 10);
 
-    queuePut(map1, *elemento);
+    queuePut(mapa, *elemento);
 
-    return map1;
+    elemento->type = DEFESA;
+    elemento->elemento.defesa = DEFESA_create(POS_create(12, 2, 0), 10);
+
+    queuePut(mapa, *elemento);
+
+    elemento->type = DEFESA;
+    elemento->elemento.defesa = DEFESA_create(POS_create(31, 6, 0), 10);
+
+    queuePut(mapa, *elemento);
+
+    elemento->type = DEFESA;
+    elemento->elemento.defesa = DEFESA_create(POS_create(-18, 10, 0), 10);
+
+    queuePut(mapa, *elemento);
+
+    return mapa;
 }
