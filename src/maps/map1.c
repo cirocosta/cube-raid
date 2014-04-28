@@ -25,5 +25,7 @@ Queue MAPS_generate_map()
 
     queuePut(mapa, *elemento);
 
+    free(elemento);
+
     return mapa;
 }
