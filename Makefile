@@ -1,10 +1,14 @@
 CFLAGS = -g -Wall -pedantic -ansi -Wno-unused-result
 CC = gcc
-################################################
+
+# --- DIR ----
+
 LIB_DIR = src/lib
 MODEL_DIR = src/models
 MAP_DIR = src/maps
 TEST_DIR = test
+
+# --- MAIN ---
 
 all: maps models lib
 	@$(CC) $(CFLAGS) -o main.out src/main.c $(MAP_DIR)/map1.o $(MODEL_DIR)/models.a $(LIB_DIR)/lib.a

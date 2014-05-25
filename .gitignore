@@ -1,5 +1,6 @@
 *.o
 *.out
+*.tar.gz
 
 # SublimeText project files
 *.sublime*
