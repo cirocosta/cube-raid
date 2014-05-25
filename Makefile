@@ -18,8 +18,9 @@ lib:
 	@$(CC) $(CFLAGS) -c -o $(LIB_DIR)/circularbuffer.o $(LIB_DIR)/circularbuffer.c
 	@$(CC) $(CFLAGS) -c -o $(LIB_DIR)/queue.o $(LIB_DIR)/queue.c
 	@$(CC) $(CFLAGS) -c -o $(LIB_DIR)/position.o $(LIB_DIR)/position.c
+	@$(CC) $(CFLAGS) -c -o $(LIB_DIR)/keyboard.o $(LIB_DIR)/keyboard.c
 	@echo [BUILD] Building libs
-	@ar rvs $(LIB_DIR)/lib.a $(LIB_DIR)/circularbuffer.o $(LIB_DIR)/queue.o $(LIB_DIR)/position.o > /dev/null
+	@ar rvs $(LIB_DIR)/lib.a $(LIB_DIR)/circularbuffer.o $(LIB_DIR)/queue.o $(LIB_DIR)/position.o $(LIB_DIR)/keyboard.o > /dev/null
 	@echo [BUILD] Creating lib.a
 
 models: lib
@@ -36,13 +37,15 @@ maps: lib models
 	@echo [BUILD] Building maps
 
 test: lib models maps
+	@echo [TEST] Building tests
 	@$(CC) $(CFLAGS) -o $(TEST_UNIT_DIR)/test_circularbuffer.out $(TEST_UNIT_DIR)/test_circularbuffer.c $(LIB_DIR)/lib.a
 	@$(CC) $(CFLAGS) -o $(TEST_UNIT_DIR)/test_queue.out $(TEST_UNIT_DIR)/test_queue.c $(LIB_DIR)/lib.a
 	@$(CC) $(CFLAGS) -o $(TEST_UNIT_DIR)/test_position.out $(TEST_UNIT_DIR)/test_position.c $(LIB_DIR)/lib.a
 	@$(CC) $(CFLAGS) -o $(TEST_UNIT_DIR)/test_nave.out $(TEST_UNIT_DIR)/test_nave.c $(LIB_DIR)/lib.a $(MODEL_DIR)/models.a
 	@$(CC) $(CFLAGS) -o $(TEST_UNIT_DIR)/test_defesa.out $(TEST_UNIT_DIR)/test_defesa.c $(LIB_DIR)/lib.a $(MODEL_DIR)/models.a
 	@$(CC) $(CFLAGS) -o $(TEST_UNIT_DIR)/test_tiro.out $(TEST_UNIT_DIR)/test_tiro.c $(LIB_DIR)/lib.a $(MODEL_DIR)/models.a
-	@echo [TEST] Building tests
+	@$(CC) $(CFLAGS) -o $(TEST_UNIT_DIR)/test_keyboard.out $(TEST_UNIT_DIR)/test_keyboard.c $(LIB_DIR)/lib.a
+	@echo [TEST] Running tests
 	@./$(TEST_UNIT_DIR)/test_circularbuffer.out
 	@echo [TEST-LIB] CircularBuffer [OK]
 	@./$(TEST_UNIT_DIR)/test_queue.out
@@ -55,6 +58,8 @@ test: lib models maps
 	@echo [TEST-MODEL] Defesa [OK]
 	@./$(TEST_UNIT_DIR)/test_tiro.out
 	@echo [TEST-MODEL] Tiro [OK]
+	@./$(TEST_UNIT_DIR)/test_keyboard.out
+	@echo [TEST-MODEL] Keyboard [OK]
 
 clean:
 	find . -name \*.o -delete

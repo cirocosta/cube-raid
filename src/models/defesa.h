@@ -15,5 +15,6 @@ typedef struct Defesa
  * @return        O objeto criado se a alocacao acontecer com sucesso
  */
 Defesa DEFESA_create(Position pos, int damage);
+void DEFESA_update();
 
 #endif

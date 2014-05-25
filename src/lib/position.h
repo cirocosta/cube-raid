@@ -8,9 +8,9 @@
  * de uma coordenada.
  */
 typedef struct pos {
-    int x;
-    int y;
-    int z;
+    float x;
+    float y;
+    float z;
 } Position;
 
 /**
@@ -20,6 +20,6 @@ typedef struct pos {
  * @param  z posicao vertical (altura)
  * @return   um objeto Position
  */
-Position POS_create(int x, int y, int z);
+Position POS_create(float x, float y, float z);
 
 #endif

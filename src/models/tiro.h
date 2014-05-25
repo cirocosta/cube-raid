@@ -5,7 +5,7 @@
 typedef struct Tiro
 {
     Position pos;
-    int vel;
+    float vel;
     Position orientation;
 } Tiro;
 
@@ -16,6 +16,7 @@ typedef struct Tiro
  * @param  orientation orientacao em xyz
  * @return             um objeto Tiro
  */
-Tiro TIRO_create(Position pos, int vel, Position orientation);
+Tiro TIRO_create(Position pos, float vel, Position orientation);
+void TIRO_update();
 
 #endif

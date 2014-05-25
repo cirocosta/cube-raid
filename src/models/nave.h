@@ -5,7 +5,7 @@
 typedef struct Nave
 {
     Position pos;
-    int vel;
+    float vel;
     Position orientation;
     int hp;
 } Nave;
@@ -18,12 +18,14 @@ typedef struct Nave
  * @param  hp          vida
  * @return             Objeto criado
  */
-Nave NAVE_create(Position pos, int vel, Position orientation, int hp);
+Nave NAVE_create(Position pos, float vel, Position orientation, int hp);
 
 /**
  * Destroi um objeto do tipo Nave (desaloca memoria)
  * @param nave [description]
  */
 void NAVE_destroy(Nave *nave);
+void NAVE_update(Nave *nave);
+void NAVE_show(Nave *nave);
 
 #endif

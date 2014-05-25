@@ -8,3 +8,7 @@ Defesa DEFESA_create(Position pos, int damage)
 
     return *defesa;
 }
+
+void DEFESA_update()
+{
+}

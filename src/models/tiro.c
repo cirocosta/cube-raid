@@ -1,7 +1,7 @@
 #include "../lib/position.h"
 #include "tiro.h"
 
-Tiro TIRO_create(Position pos, int vel, Position orientation)
+Tiro TIRO_create(Position pos, float vel, Position orientation)
 {
     Tiro *tiro = malloc(sizeof(*tiro));
 
@@ -10,4 +10,8 @@ Tiro TIRO_create(Position pos, int vel, Position orientation)
     tiro->orientation = orientation;
 
     return *tiro;
+}
+
+void TIRO_update()
+{
 }

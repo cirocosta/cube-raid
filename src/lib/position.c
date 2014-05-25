@@ -1,6 +1,6 @@
 #include "position.h"
 
-Position POS_create(int x, int y, int z)
+Position POS_create(float x, float y, float z)
 {
 	Position *p = malloc(sizeof *p);
 
