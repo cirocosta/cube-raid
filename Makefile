@@ -1,4 +1,4 @@
-CFLAGS = -g -Wall -pedantic -ansi -Wno-unused-result
+CFLAGS = -g -Wall -pedantic -ansi -Wno-unused-result -D _BSD_SOURCE
 CC = gcc
 
 # --- DIR ----
@@ -6,7 +6,7 @@ CC = gcc
 LIB_DIR = src/lib
 MODEL_DIR = src/models
 MAP_DIR = src/maps
-TEST_DIR = test
+TEST_UNIT_DIR = test/unit
 
 # --- MAIN ---
 
@@ -36,24 +36,24 @@ maps: lib models
 	@echo [BUILD] Building maps
 
 test: lib models maps
-	@$(CC) $(CFLAGS) -o $(TEST_DIR)/test_circularbuffer.out $(TEST_DIR)/test_circularbuffer.c $(LIB_DIR)/lib.a
-	@$(CC) $(CFLAGS) -o $(TEST_DIR)/test_queue.out $(TEST_DIR)/test_queue.c $(LIB_DIR)/lib.a
-	@$(CC) $(CFLAGS) -o $(TEST_DIR)/test_position.out $(TEST_DIR)/test_position.c $(LIB_DIR)/lib.a
-	@$(CC) $(CFLAGS) -o $(TEST_DIR)/test_nave.out $(TEST_DIR)/test_nave.c $(LIB_DIR)/lib.a $(MODEL_DIR)/models.a
-	@$(CC) $(CFLAGS) -o $(TEST_DIR)/test_defesa.out $(TEST_DIR)/test_defesa.c $(LIB_DIR)/lib.a $(MODEL_DIR)/models.a
-	@$(CC) $(CFLAGS) -o $(TEST_DIR)/test_tiro.out $(TEST_DIR)/test_tiro.c $(LIB_DIR)/lib.a $(MODEL_DIR)/models.a
+	@$(CC) $(CFLAGS) -o $(TEST_UNIT_DIR)/test_circularbuffer.out $(TEST_UNIT_DIR)/test_circularbuffer.c $(LIB_DIR)/lib.a
+	@$(CC) $(CFLAGS) -o $(TEST_UNIT_DIR)/test_queue.out $(TEST_UNIT_DIR)/test_queue.c $(LIB_DIR)/lib.a
+	@$(CC) $(CFLAGS) -o $(TEST_UNIT_DIR)/test_position.out $(TEST_UNIT_DIR)/test_position.c $(LIB_DIR)/lib.a
+	@$(CC) $(CFLAGS) -o $(TEST_UNIT_DIR)/test_nave.out $(TEST_UNIT_DIR)/test_nave.c $(LIB_DIR)/lib.a $(MODEL_DIR)/models.a
+	@$(CC) $(CFLAGS) -o $(TEST_UNIT_DIR)/test_defesa.out $(TEST_UNIT_DIR)/test_defesa.c $(LIB_DIR)/lib.a $(MODEL_DIR)/models.a
+	@$(CC) $(CFLAGS) -o $(TEST_UNIT_DIR)/test_tiro.out $(TEST_UNIT_DIR)/test_tiro.c $(LIB_DIR)/lib.a $(MODEL_DIR)/models.a
 	@echo [TEST] Building tests
-	@./test/test_circularbuffer.out
+	@./$(TEST_UNIT_DIR)/test_circularbuffer.out
 	@echo [TEST-LIB] CircularBuffer [OK]
-	@./test/test_queue.out
+	@./$(TEST_UNIT_DIR)/test_queue.out
 	@echo [TEST-LIB] Queues [OK]
-	@./test/test_position.out
+	@./$(TEST_UNIT_DIR)/test_position.out
 	@echo [TEST-LIB] Position [OK]
-	@./test/test_nave.out
+	@./$(TEST_UNIT_DIR)/test_nave.out
 	@echo [TEST-MODEL] Nave [OK]
-	@./test/test_defesa.out
+	@./$(TEST_UNIT_DIR)/test_defesa.out
 	@echo [TEST-MODEL] Defesa [OK]
-	@./test/test_tiro.out
+	@./$(TEST_UNIT_DIR)/test_tiro.out
 	@echo [TEST-MODEL] Tiro [OK]
 
 clean:

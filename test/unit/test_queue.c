@@ -1,7 +1,7 @@
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "../src/lib/queue.h"
+#include "../../src/lib/queue.h"
 
 static Queue q;
 

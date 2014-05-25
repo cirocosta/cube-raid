@@ -64,6 +64,7 @@ Sua estrutura de pastas é muito simples e alinha-se com o design pattern MVC:
 | --------------------------------------------------------------------- | ----------------------------------------------------------------------- |
 | [Ciro S. Costa](https://github.com/cirocosta)                         | [Rodrigo Alves](https://github.com/rasouza)                             |
 
+
 ## Discussões/etc
 
 https://github.com/cirocosta/monsters-raid/

@@ -1,7 +1,7 @@
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "../src/models/tiro.h"
+#include "../../src/models/tiro.h"
 
 
 void test_create()

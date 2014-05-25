@@ -1,7 +1,7 @@
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "../src/lib/position.h"
+#include "../../src/lib/position.h"
 
 
 void test_create()

@@ -1,7 +1,7 @@
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "../src/models/nave.h"
+#include "../../src/models/nave.h"
 
 
 void test_create()

@@ -1,7 +1,7 @@
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "../src/lib/circularbuffer.h"
+#include "../../src/lib/circularbuffer.h"
 
 static CircularBuffer *cb;
 static int size = 10;

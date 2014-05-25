@@ -1,7 +1,7 @@
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "../src/models/defesa.h"
+#include "../../src/models/defesa.h"
 
 
 void test_create()
