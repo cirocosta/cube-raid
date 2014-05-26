@@ -21,11 +21,37 @@ void NAVE_destroy(Nave *nave)
     free(nave);
 }
 
-void NAVE_update(Nave *nave)
+void NAVE_update(Nave *nave, int key)
 {
 	nave->pos.x += nave->orientation.x;
 	nave->pos.y += nave->orientation.y;
 	nave->pos.z += nave->vel;
+
+
+	nave->orientation.x = 0;
+	nave->orientation.y = 0;
+
+    switch(key) {
+        case 97: /* A */
+    	nave->orientation.x -= 1;
+        break;
+
+        case 119: /* W */
+        nave->orientation.y += 1;
+        break;
+
+        case 100: /* D */
+        nave->orientation.x += 1;
+        break;
+
+        case 115: /* S */
+        nave->orientation.y -= 1;
+        break;
+    }
+
+	nave->pos.x += nave->orientation.x;
+	nave->pos.y += nave->orientation.y;
+	nave->pos.z += 1;
 }
 
 void NAVE_show(Nave *nave)

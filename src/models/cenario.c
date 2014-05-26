@@ -18,40 +18,24 @@ void CENARIO_consume_map(Queue map)
     KEYBOARD_init();
 
     while (1) {
-        NAVE_update(&nave);
-        NAVE_show(&nave);
 
         key = KEYBOARD_check_input();
 
-        switch(key) {
-            case 27:
-            exit(0);
+        if (key == 27) exit(0);
 
-            case 97: /* A */
-            printf("AAAA\n");
-            break;
-
-            case 119: /* W */
-            printf("WWWW\n");
-            break;
-
-            case 100: /* D */
-            printf("DDDD\n");
-            break;
-
-            case 115: /* S */
-            printf("SSSS\n");
-            break;
-        }
+        NAVE_update(&nave, key);
+        NAVE_show(&nave);
 
         usleep(100005);
     }
 }
+
 
 int CENARIO_collision(float radius1, Position obj1, float radius2, Position obj2)
 {
 	float distance = sqrt(pow(obj1.x - obj2.x, 2) + pow(obj1.y - obj2.y, 2) + pow(obj1.z - obj2.z, 2));
 	if (distance < radius1 + radius2)
 		return 1;
+
 	return 0;
 }
