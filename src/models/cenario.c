@@ -1,6 +1,6 @@
 #include <math.h>
-#include "cenario.h"
 #include <unistd.h>
+#include "cenario.h"
 #include "../lib/keyboard.h"
 
 #ifndef TIPOS_H

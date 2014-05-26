@@ -11,7 +11,7 @@ TEST_UNIT_DIR = test/unit
 # --- MAIN ---
 
 all: maps models lib
-	@$(CC) $(CFLAGS) -o main.out src/main.c $(MAP_DIR)/map1.o $(MODEL_DIR)/models.a $(LIB_DIR)/lib.a
+	@$(CC) $(CFLAGS) -o main.out src/main.c $(MAP_DIR)/map1.o $(MODEL_DIR)/models.a $(LIB_DIR)/lib.a -lm
 	@echo [BUILD] Building main.out [OK]
 
 lib:
@@ -38,7 +38,7 @@ maps: lib models
 
 test: lib models maps
 	@echo [TEST] Building tests
-	@$(CC) $(CFLAGS) -o $(TEST_UNIT_DIR)/test_cenario.out $(TEST_UNIT_DIR)/test_cenario.c $(LIB_DIR)/lib.a $(MODEL_DIR)/models.a -lm
+	@$(CC) $(CFLAGS) -o $(TEST_UNIT_DIR)/test_cenario.out $(TEST_UNIT_DIR)/test_cenario.c $(MODEL_DIR)/models.a $(LIB_DIR)/lib.a -lm
 	@$(CC) $(CFLAGS) -o $(TEST_UNIT_DIR)/test_circularbuffer.out $(TEST_UNIT_DIR)/test_circularbuffer.c $(LIB_DIR)/lib.a
 	@$(CC) $(CFLAGS) -o $(TEST_UNIT_DIR)/test_queue.out $(TEST_UNIT_DIR)/test_queue.c $(LIB_DIR)/lib.a
 	@$(CC) $(CFLAGS) -o $(TEST_UNIT_DIR)/test_position.out $(TEST_UNIT_DIR)/test_position.c $(LIB_DIR)/lib.a
