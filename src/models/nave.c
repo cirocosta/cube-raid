@@ -23,9 +23,9 @@ void NAVE_destroy(Nave *nave)
 
 void NAVE_update(Nave *nave)
 {
-	nave->pos.x += 1.;
-	nave->pos.y += 1.;
-	nave->pos.z += 1.;
+	nave->pos.x += nave->orientation.x;
+	nave->pos.y += nave->orientation.y;
+	nave->pos.z += nave->vel;
 }
 
 void NAVE_show(Nave *nave)
