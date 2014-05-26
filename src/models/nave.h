@@ -2,6 +2,13 @@
 #define NAVE_H
 #include "../lib/position.h"
 
+/**
+ * A nave e composta por:
+ * -	{float} Velocidade
+ * -	{Position} orientacao (para onde esta indo)
+ * -	{int} Vida
+ * -	{float} raio representativo de suas dimensoes
+ */
 typedef struct Nave
 {
     Position pos;
@@ -26,7 +33,18 @@ Nave NAVE_create(Position pos, float vel, Position orientation, int hp);
  * @param nave [description]
  */
 void NAVE_destroy(Nave *nave);
+
+/**
+ * Atualiza atributos da nava - executado dentro do laco principal do
+ * jogo.
+ * @param nave Objeto da nave.
+ */
 void NAVE_update(Nave *nave);
+
+/**
+ * Expoe os atributos da Nave
+ * @param nave Nave a mostrar
+ */
 void NAVE_show(Nave *nave);
 
 #endif

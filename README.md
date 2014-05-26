@@ -42,6 +42,22 @@ Adotamos então o sistema de [Issues](https://github.com/cirocosta/monsters-raid
 
 ### Segunda entrega
 
+Neste momento do projeto a grande dificuldade foi:
+
+-	como tratar, de modo síncrono, algo de natureza assíncrona (recebimento dos inputs do teclado de maneira non-blocking) ? Chegamos a uma solução parciável porém não satisfatória. Esparamos melhorar (muito) com o `glutKeyboardFunc` na próxima fase :neckbeard: ;
+-	qual a maneira mais eficiente de se definir um campo de visão e de fato mostrar apenas o que é visto, guardando-se referência ao que pode vir a ser visto de novo?
+-	como verificar as colisões para os diversos objetos apresentados em um trecho do mapa?
+
+Esperamos entao responder tais questões na próxima etapa quando de fato tivermos algo visual.
+
+
+#### Problemas
+
+Não conseguimos:
+
+-	Implementar corretamente a exibição dos elementos dado um campo de visão
+-	Limpar todos os memory leaks :(
+-	De maneira eficiente e satisfatória captar o input em tempo real do teclado
 
 
 ## Estrutura

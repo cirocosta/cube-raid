@@ -48,10 +48,12 @@ void CENARIO_consume_map(Queue map)
     }
 }
 
+
 int CENARIO_collision(float radius1, Position obj1, float radius2, Position obj2)
 {
 	float distance = sqrt(pow(obj1.x - obj2.x, 2) + pow(obj1.y - obj2.y, 2) + pow(obj1.z - obj2.z, 2));
 	if (distance < radius1 + radius2)
 		return 1;
+
 	return 0;
 }
