@@ -13,6 +13,8 @@ $ make && ./main.out
 
 e então o mesmo inicializará.
 
+Para sair do laço principal de execução basta pressional `ESC`.
+
 
 ## Testando
 
