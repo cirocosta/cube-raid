@@ -1,5 +1,6 @@
+#include <math.h>
 #include "cenario.h"
-#include "unistd.h"
+#include <unistd.h>
 #ifndef TIPOS_H
 typedef enum { NAVE, TIRO, DEFESA } Tipo;
 #endif
@@ -17,4 +18,12 @@ void CENARIO_consume_map(Queue map)
         usleep(100000);
     }
 
+}
+
+int CENARIO_collision(float radius1, Position obj1, float radius2, Position obj2)
+{
+	float distance = sqrt(pow(obj1.x - obj2.x, 2) + pow(obj1.y - obj2.y, 2) + pow(obj1.z - obj2.z, 2));
+	if (distance < radius1 + radius2)
+		return 1;
+	return 0;
 }

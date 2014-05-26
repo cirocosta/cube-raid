@@ -8,6 +8,7 @@ typedef struct Nave
     float vel;
     Position orientation;
     int hp;
+    float radius;
 } Nave;
 
 /**
