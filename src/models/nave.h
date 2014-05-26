@@ -38,8 +38,9 @@ void NAVE_destroy(Nave *nave);
  * Atualiza atributos da nava - executado dentro do laco principal do
  * jogo.
  * @param nave Objeto da nave.
+ * @param key Keycode do input no momento
  */
-void NAVE_update(Nave *nave);
+void NAVE_update(Nave *nave, int key);
 
 /**
  * Expoe os atributos da Nave
