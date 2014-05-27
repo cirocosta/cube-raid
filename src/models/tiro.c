@@ -1,4 +1,3 @@
-#include "../lib/position.h"
 #include "tiro.h"
 
 Tiro TIRO_create(Position pos, float vel, Position orientation)

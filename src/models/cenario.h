@@ -7,6 +7,9 @@
 #define CENARIO_H
 #include "../lib/queue.h"
 #include <math.h>
+#include <unistd.h>
+#include "../lib/keyboard.h"
+#include "../lib/circularbuffer.h"
 
 /**
  * Consome um mapa passado como argumento.

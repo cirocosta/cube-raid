@@ -1,6 +1,4 @@
-#include "../lib/position.h"
 #include "nave.h"
-#include <stdio.h>
 
 Nave NAVE_create(Position pos, float vel, Position orientation, int hp)
 {
@@ -47,6 +45,7 @@ void NAVE_update(Nave *nave, int key)
         case 115: /* S */
         nave->orientation.y -= 1;
         break;
+
     }
 
 	nave->pos.x += nave->orientation.x;
@@ -56,6 +55,6 @@ void NAVE_update(Nave *nave, int key)
 
 void NAVE_show(Nave *nave)
 {
-	printf("Nave em (%f %f %f)\n",
+	printf("Nave em (%g %g %g)\n",
 	       nave->pos.x, nave->pos.y, nave->pos.z);
 }

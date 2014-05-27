@@ -1,7 +1,4 @@
-#include <math.h>
-#include <unistd.h>
 #include "cenario.h"
-#include "../lib/keyboard.h"
 
 #ifndef TIPOS_H
 typedef enum { NAVE, TIRO, DEFESA } Tipo;
@@ -10,17 +7,40 @@ typedef enum { NAVE, TIRO, DEFESA } Tipo;
 
 void CENARIO_consume_map(Queue map)
 {
-    Nave nave = NAVE_create(POS_create(0., 0., 0.),
-                10,
-                POS_create(10., 10., 10.), 10);
-    int key = -1;
+	Nave nave;
+	CircularBuffer *cb;
+	int key, i;
+	CBData cbElem;
 
+	/* Create Aircraft */
+    nave = NAVE_create(
+    		POS_create(0., 0., 0.), 	/* Position */
+    		10,							/* Velocity */
+            POS_create(10., 10., 10.),	/* Orientation */
+            10 							/* HP */
+    );
+
+    /* Initialize Keyboard Input */
+    key = -1;
     KEYBOARD_init();
 
-    while (1) {
+    /* Create CircularBuffer */
+    cb = malloc(sizeof *cb);
+    CB_init(cb, 10);
+    /* Carrega todo o CB ou até o fim dos objetos do mapa */
+    for (i = 0; i < cb->size && !queueIsEmpty(map); i++)
+    {
+    	cbElem = queueGet(map);
+    	CB_write(cb, &cbElem);
+    	printf("Defesa inicializado no mapa (Posicao: %g %g %g)\n",
+    			cbElem.elemento.defesa.pos.x,
+    			cbElem.elemento.defesa.pos.y,
+    			cbElem.elemento.defesa.pos.z);
+    }
 
+    while (1)
+    {
         key = KEYBOARD_check_input();
-
         if (key == 27) exit(0);
 
         NAVE_update(&nave, key);

@@ -1,6 +1,7 @@
 #ifndef NAVE_H
 #define NAVE_H
 #include "../lib/position.h"
+#include <stdio.h>
 
 /**
  * A nave e composta por:
