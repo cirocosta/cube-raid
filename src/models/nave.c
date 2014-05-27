@@ -9,6 +9,7 @@ Nave NAVE_create(Position pos, float vel, Position orientation, int hp)
 	nave->orientation = orientation;
 	nave->hp = hp;
 	nave->radius = 3.0;
+	nave->visibility = 5.0;
 
 	return *nave;
 }

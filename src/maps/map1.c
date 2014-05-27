@@ -6,7 +6,7 @@ Queue MAPS_generate_map()
     CBData *elemento = malloc(sizeof *elemento);
 
     elemento->type = DEFESA;
-    elemento->elemento.defesa = DEFESA_create(POS_create(12, 2, 10), 10);
+    elemento->elemento.defesa = DEFESA_create(POS_create(10, 10, 50), 10);
 
     queuePut(mapa, *elemento);
 

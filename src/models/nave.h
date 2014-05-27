@@ -17,6 +17,7 @@ typedef struct Nave
     Position orientation;
     int hp;
     float radius;
+    float visibility;
 } Nave;
 
 /**

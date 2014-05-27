@@ -10,6 +10,7 @@
 #include <unistd.h>
 #include "../lib/keyboard.h"
 #include "../lib/circularbuffer.h"
+#include "../lib/position.h"
 
 /**
  * Consome um mapa passado como argumento.
@@ -26,5 +27,6 @@ void CENARIO_consume_map(Queue map);
  * @return         1 o 0 se ha colisoca ou nao, respectivamente.
  */
 int CENARIO_collision(float radius1, Position obj1, float radius2, Position obj2);
-
+int CENARIO_init(CircularBuffer **cb, Queue map);
+int CENARIO_detect_collision(CircularBuffer *cb, Nave nave);
 #endif

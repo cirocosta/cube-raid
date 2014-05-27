@@ -5,7 +5,7 @@ Defesa DEFESA_create(Position pos, int damage)
 
     defesa->pos = pos;
     defesa->damage = damage;
-
+    defesa->radius = 3;
     return *defesa;
 }
 
