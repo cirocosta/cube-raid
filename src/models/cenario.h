@@ -5,12 +5,15 @@
 
 #ifndef CENARIO_H
 #define CENARIO_H
-#include "../lib/queue.h"
 #include <math.h>
 #include <unistd.h>
+#include <string.h>
+#include "../lib/queue.h"
 #include "../lib/keyboard.h"
 #include "../lib/circularbuffer.h"
 #include "../lib/position.h"
+#include "../lib/queue.h"
+#include "../lib/tipos.h"
 
 /**
  * Consome um mapa passado como argumento.
@@ -29,4 +32,5 @@ void CENARIO_consume_map(Queue map);
 int CENARIO_collision(float radius1, Position obj1, float radius2, Position obj2);
 int CENARIO_init(CircularBuffer **cb, Queue map);
 int CENARIO_detect_collision(CircularBuffer *cb, Nave nave);
+Queue CENARIO_create(char* name);
 #endif

@@ -10,7 +10,7 @@ TEST_UNIT_DIR = test/unit
 
 # --- MAIN ---
 
-all: maps models lib
+all: models lib
 	@$(CC) $(CFLAGS) -o main.out src/main.c $(MAP_DIR)/map1.o $(MODEL_DIR)/models.a $(LIB_DIR)/lib.a -lm
 	@echo [BUILD] Building main.out [OK]
 
@@ -31,10 +31,6 @@ models: lib
 	@echo [BUILD] Building models
 	@ar rvs $(MODEL_DIR)/models.a $(MODEL_DIR)/cenario.o $(MODEL_DIR)/nave.o $(MODEL_DIR)/defesa.o $(MODEL_DIR)/tiro.o > /dev/null
 	@echo [BUILD] Creating models.a
-
-maps: lib models
-	@$(CC) $(CFLAGS) -c -o $(MAP_DIR)/map1.o $(MAP_DIR)/map1.c
-	@echo [BUILD] Building maps
 
 test: lib models maps
 	@echo [TEST] Building tests

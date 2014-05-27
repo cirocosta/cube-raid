@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "lib/queue.h"
-#include "maps/map1.h"
 #include "models/cenario.h"
 
 int main(int argc, char const *argv[])
@@ -15,7 +14,7 @@ int main(int argc, char const *argv[])
     printf("----------\n");
     printf("\n\n");
 
-    map = MAPS_generate_map();
+    map = CENARIO_create("map1");
     CENARIO_consume_map(map);
 
     return 0;

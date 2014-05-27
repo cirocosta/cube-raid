@@ -90,3 +90,27 @@ int CENARIO_detect_collision(CircularBuffer *cb, Nave nave)
 	}
 	return 0;
 }
+
+Queue CENARIO_create(char* name)
+{
+	FILE* fp;
+	float x, y, z;
+	int hp;
+	Queue mapa = queueInit();
+	CBData *elemento = malloc(sizeof *elemento);
+	char str[100] = "src/maps/";
+
+	strcat(str, name);
+	fp = fopen(str, "r");
+
+	while(fscanf(fp, "%f %f %f %d", &x, &y, &z, &hp) != EOF)
+	{
+	    elemento->type = DEFESA;
+	    elemento->elemento.defesa = DEFESA_create(POS_create(x, y, z), hp);
+
+	    queuePut(mapa, *elemento);
+	}
+
+    free(elemento);
+    return mapa;
+}
