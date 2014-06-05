@@ -1,19 +1,19 @@
 #include "camera.h"
 
 Camera CAM_create(){
-    Camera *cam = malloc(sizeof(*cam));
+  Camera *cam = malloc(sizeof(*cam));
 
-    if (cam == NULL) {
-      exit(EXIT_FAILURE);
-    }
+  if (cam == NULL) {
+    exit(EXIT_FAILURE);
+  }
 
-    cam->camX = .0;
-    cam->camY = .0;
-    cam->camZ = 5.;
-    cam->camYaw = .0;
-    cam->camPitch = .0;
+  cam->camX = .0;
+  cam->camY = .0;
+  cam->camZ = 5.;
+  cam->camYaw = .0;
+  cam->camPitch = .0;
 
-    return *cam;
+  return *cam;
 }
 
 void CAM_destroy(Camera *cam)

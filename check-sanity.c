@@ -10,33 +10,33 @@
 
 void display()
 {
-    glClearColor(.0f, .0f, .0f, 1.f);
-    glClear(GL_COLOR_BUFFER_BIT);
+  glClearColor(.0f, .0f, .0f, 1.f);
+  glClear(GL_COLOR_BUFFER_BIT);
 
-    glBegin(GL_QUADS);
-        glColor3f(1.0, 0.0, 0.0);
-        glVertex2f(-0.8f, -0.8f);
-        glVertex2f( 0.8f, -0.8f);
-        glVertex2f( 0.8f,  0.8f);
-        glVertex2f(-0.8f,  0.8f);
-    glEnd();
+  glBegin(GL_QUADS);
+    glColor3f(1.0, 0.0, 0.0);
+    glVertex2f(-0.8f, -0.8f);
+    glVertex2f( 0.8f, -0.8f);
+    glVertex2f( 0.8f,  0.8f);
+    glVertex2f(-0.8f,  0.8f);
+  glEnd();
 
-    glFlush();
+  glFlush();
 }
 
 void configOpenGL(int argc, char **argv)
 {
-    glutInit(&argc, argv);
-    glutCreateWindow("Learning OpenGL");
-    glutInitWindowSize(500, 500);
-    glutInitWindowPosition(100,100);
-    glutDisplayFunc(display);
+  glutInit(&argc, argv);
+  glutCreateWindow("Learning OpenGL");
+  glutInitWindowSize(500, 500);
+  glutInitWindowPosition(100,100);
+  glutDisplayFunc(display);
 }
 
 int main(int argc, char **argv)
 {
-    configOpenGL(argc, argv);
-    glutMainLoop();
+  configOpenGL(argc, argv);
+  glutMainLoop();
 
-    return 0;
+  return 0;
 }
