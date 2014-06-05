@@ -81,6 +81,9 @@ void CAM_control(Camera *cam)
   glRotatef(-cam->camPitch, 1., .0, .0);
   glRotatef(-cam->camYaw, .0, 1., .0);
 
+  cam->mouseDelta[0] = .0;
+  cam->mouseDelta[1] = .0;
+
   /* DEBUG */
   printf("%s\n", CAM_toString(cam));
 }
