@@ -5,6 +5,7 @@
 #include "GL/glew.h"
 #include "GL/freeglut.h"
 #include "camera.h"
+#include "builder.h"
 
 /**
  * Config
@@ -37,77 +38,6 @@ void centerPointer()
   warped = true;
 }
 
-void PLANE_build(float w, float h)
-{
-  float difamb[] = {0.3,1.0,0.6,1.0};
-
-  glMatrixMode(GL_MODELVIEW);
-  glLoadIdentity();
-  glTranslatef(1.5, .0, -7.);
-
-  glBegin(GL_QUADS);
-    glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, difamb);
-    glVertex3f( 1.0, -1.0,  100.0);
-    glVertex3f(-1.0, -1.0,  100.0);
-    glVertex3f(-1.0, -1.0, -100.0);
-    glVertex3f( 1.0, -1.0, -100.0);
-  glEnd();
-}
-
-void CUBE_build(GLfloat w, GLfloat h, GLfloat d)
-{
-  float difamb[] = {1.0, 0.5, 0.3, 1.0};
-  glMatrixMode(GL_MODELVIEW);
-  glLoadIdentity();
-  glTranslatef(1.5, .0, -7.);
-  glRotatef(angle, 1., 1.0, .0);
-
-  glBegin(GL_QUADS);
-    glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, difamb);
-
-    /* Top face */
-    glNormal3f(.0, 1.0, .0);
-    glVertex3f(w* 1.0, h*1.0, d*-1.0);
-    glVertex3f(w*-1.0, h*1.0, d*-1.0);
-    glVertex3f(w*-1.0, h*1.0, d* 1.0);
-    glVertex3f(w* 1.0, h*1.0, d* 1.0);
-
-    /* Bottom face */
-    glNormal3f(.0, -1.0, .0);
-    glVertex3f(w* 1.0, h*-1.0, d* 1.0);
-    glVertex3f(w*-1.0, h*-1.0, d* 1.0);
-    glVertex3f(w*-1.0, h*-1.0, d*-1.0);
-    glVertex3f(w* 1.0, h*-1.0, d*-1.0);
-
-    /* Front face */
-    glNormal3f(.0, .0, 1.0);
-    glVertex3f(w* 1.0, h* 1.0, d*1.0);
-    glVertex3f(w*-1.0, h* 1.0, d*1.0);
-    glVertex3f(w*-1.0, h*-1.0, d*1.0);
-    glVertex3f(w* 1.0, h*-1.0, d*1.0);
-
-    /* Back face */
-    glNormal3f(.0, .0, -1.0);
-    glVertex3f(w* 1.0, h*-1.0, d*-1.0);
-    glVertex3f(w*-1.0, h*-1.0, d*-1.0);
-    glVertex3f(w*-1.0, h* 1.0, d*-1.0);
-    glVertex3f(w* 1.0, h* 1.0, d*-1.0);
-
-    /* Left face */
-    glNormal3f(-1.0, .0, .0);
-    glVertex3f(w*-1.0, h* 1.0, d* 1.0);
-    glVertex3f(w*-1.0, h* 1.0, d*-1.0);
-    glVertex3f(w*-1.0, h*-1.0, d*-1.0);
-    glVertex3f(w*-1.0, h*-1.0, d* 1.0);
-
-    /* Right face */
-    glNormal3f(1.0, .0, .0);
-    glVertex3f(w*1.0, h* 1.0, d*-1.0);
-    glVertex3f(w*1.0, h* 1.0, d* 1.0);
-    glVertex3f(w*1.0, h*-1.0, d* 1.0);
-    glVertex3f(w*1.0, h*-1.0, d*-1.0);
-  glEnd();
-}
 
 void renderScene()
 {
@@ -115,10 +45,8 @@ void renderScene()
   /* before rendering the grahics. */
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-  angle += .5;
-
   PLANE_build(1., 1.);
-  CUBE_build(1., 1., 1.);
+  CUBE_build(1., 1., 1., angle += .5);
 
   glutSwapBuffers();
 }
