@@ -35,6 +35,7 @@
 
   Camera CAM_create(float position[], bool *keysPressed, float *mouseDelta);
   void CAM_destroy(Camera *cam);
+  void CAM_setSensibility(Camera *cam, float mouse, float move);
   /**
    * Faz com que a camera fique sempre :
    *  - entre [-90, 90] graus de inclinacao.

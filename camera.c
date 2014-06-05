@@ -14,8 +14,8 @@ Camera CAM_create(float position[], bool *keysPressed, float *mouseDelta){
   cam->camPitch = .0;
 
   /* sensibility */
-  cam->mouseVel = 1.;
-  cam->moveVel = 1.;
+  cam->mouseVel = .1;
+  cam->moveVel = .1;
 
   cam->keysPressed = keysPressed;
   cam->mouseDelta = mouseDelta;
@@ -81,7 +81,7 @@ void CAM_control(Camera *cam)
   glRotatef(-cam->camPitch, 1., .0, .0);
   glRotatef(-cam->camYaw, .0, 1., .0);
 
-
+  /* DEBUG */
   printf("%s\n", CAM_toString(cam));
 }
 
