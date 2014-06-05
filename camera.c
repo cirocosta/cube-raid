@@ -45,7 +45,7 @@ void CAM_lockCamera(Camera *cam)
 
 void CAM_moveCamera(Camera *cam, float dir)
 {
-  float rad = degreesToRadians(cam->camYaw + dir);
+  float rad= (cam->camYaw + dir) * (M_PI/180.0);
 
   cam->camX -= sin(rad) * cam->moveVel;
   cam->camZ -= cos(rad) * cam->moveVel;
@@ -53,7 +53,7 @@ void CAM_moveCamera(Camera *cam, float dir)
 
 void CAM_moveCameraUp(Camera *cam, float dir)
 {
-  float rad = degreesToRadians(cam->camPitch + dir);
+  float rad= (cam->camPitch + dir) * (M_PI/180.0);
 
   cam->camY += sin(rad) * cam->moveVel;
 }
