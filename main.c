@@ -9,23 +9,33 @@
 /**
  * Config
  */
-bool paused         = false;
-bool fullScreenMode = false;
-bool warped         = false;
-int refreshMillis   = 16;
+bool paused         = false
+  , fullScreenMode  = false
+  , warped          = false
+  , IS_KEY_PRESSED[255];
+
 float angle         = .0;
-int windowWidth     = 640;
-int windowHeight    = 480;
-int windowPosX      = 50;
-int windowPosY      = 50;
+
+int refreshMillis   = 16
+  , iWindowWidth    = 640
+  , cWindowWidth    = 640
+  , iWindowHeight   = 480
+  , cWindowHeight   = 480
+  ,  windowPosX     = 50
+  ,  windowPosY     = 50;
 
 Camera cam;
-bool IS_KEY_PRESSED[255];
-
 
 /**
  * Auxiliary Funcs
  */
+
+void centerPointer()
+{
+  glutWarpPointer(glutGet(GLUT_WINDOW_WIDTH)/2,
+                  glutGet(GLUT_WINDOW_HEIGHT)/2);
+  warped = true;
+}
 
 void PLANE_build(float w, float h)
 {
@@ -113,7 +123,7 @@ void renderScene()
   glutSwapBuffers();
 }
 
-void reshape(GLsizei w, GLsizei h)
+void onWindowResize(GLsizei w, GLsizei h)
 {
   GLfloat aspectRatio;
 
@@ -124,6 +134,8 @@ void reshape(GLsizei w, GLsizei h)
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
   gluPerspective(45., aspectRatio, .1, 100.);
+
+  centerPointer();
 }
 
 void onKeyboardEnter(unsigned char key, int x, int y)
@@ -155,11 +167,11 @@ void onSpecialKeyEnter(int key, int x, int y)
       if (fullScreenMode) {
         windowPosX = glutGet(GLUT_WINDOW_X);
         windowPosY = glutGet(GLUT_WINDOW_Y);
-        windowWidth = glutGet(GLUT_WINDOW_WIDTH);
-        windowHeight = glutGet(GLUT_WINDOW_HEIGHT);
+        iWindowWidth = glutGet(GLUT_WINDOW_WIDTH);
+        iWindowHeight = glutGet(GLUT_WINDOW_HEIGHT);
         glutFullScreen();
       } else {
-        glutReshapeWindow(windowWidth, windowHeight);
+        glutReshapeWindow(iWindowWidth, iWindowHeight);
         glutPositionWindow(windowPosX, windowPosY);
       }
     break;
@@ -189,14 +201,14 @@ void Timer(int value) {
 
 void onMouseMove(int x, int y)
 {
-  printf("(%d %d)\n", windowWidth/2 - x, windowHeight/2 - y);
+  printf("(%d %d)\n", glutGet(GLUT_WINDOW_WIDTH)/2 - x,
+                      glutGet(GLUT_WINDOW_HEIGHT)/2 - y);
 
   if (warped) {
     warped = false;
     return;
   }
-  glutWarpPointer(windowWidth/2, windowHeight/2);
-  warped = true;
+  centerPointer();
 }
 
 /**
@@ -217,7 +229,7 @@ void configOpenGL(int argc, char** argv)
 
   /* Funcoes com chamada por callback */
   glutDisplayFunc(renderScene);
-  glutReshapeFunc(reshape);
+  glutReshapeFunc(onWindowResize);
   glutTimerFunc(0, Timer, 0);
   glutMouseFunc(onMouseClick);
   glutSpecialFunc(onSpecialKeyEnter);
