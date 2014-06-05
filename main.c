@@ -13,9 +13,11 @@
 bool paused         = false
   , fullScreenMode  = false
   , warped          = false
-  , IS_KEY_PRESSED[255];
+  , keysPressed[255];
 
-float angle         = .0;
+float angle         = .0
+  ,   mouseDelta[2] = {.0, .0}
+  ,   firstPosition[3] = {.0, .0, -9.};
 
 int refreshMillis   = 16
   , iWindowWidth    = 640
@@ -45,8 +47,11 @@ void renderScene()
   /* before rendering the grahics. */
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-  PLANE_build(1., 1.);
-  CUBE_build(1., 1., 1., angle += .5);
+  PLANE_build(1., 1., firstPosition);
+  CUBE_build(1., 1., 1., angle, firstPosition);
+
+  glLoadIdentity();
+  CAM_updateCamera(&cam);
 
   glutSwapBuffers();
 }
@@ -66,9 +71,9 @@ void onWindowResize(GLsizei w, GLsizei h)
   centerPointer();
 }
 
-void onKeyboardEnter(unsigned char key, int x, int y)
+void onKeyDown(unsigned char key, int x, int y)
 {
-  IS_KEY_PRESSED[key] = true;
+  keysPressed[key] = true;
 
   switch (key) {
     case 27:   /* ESC */
@@ -78,9 +83,9 @@ void onKeyboardEnter(unsigned char key, int x, int y)
   }
 }
 
-void onKeyboardUp(unsigned char key, int x, int y)
+void onKeyUp(unsigned char key, int x, int y)
 {
-  IS_KEY_PRESSED[key] = false;
+  keysPressed[key] = false;
 }
 
 /**
@@ -129,13 +134,13 @@ void Timer(int value) {
 
 void onMouseMove(int x, int y)
 {
-  printf("(%d %d)\n", glutGet(GLUT_WINDOW_WIDTH)/2 - x,
-                      glutGet(GLUT_WINDOW_HEIGHT)/2 - y);
-
   if (warped) {
     warped = false;
     return;
   }
+
+  mouseDelta[0] = glutGet(GLUT_WINDOW_WIDTH)/2 - x;
+  mouseDelta[1] = glutGet(GLUT_WINDOW_HEIGHT)/2 - y;
   centerPointer();
 }
 
@@ -161,8 +166,8 @@ void configOpenGL(int argc, char** argv)
   glutTimerFunc(0, Timer, 0);
   glutMouseFunc(onMouseClick);
   glutSpecialFunc(onSpecialKeyEnter);
-  glutKeyboardFunc(onKeyboardEnter);
-  glutKeyboardUpFunc(onKeyboardUp);
+  glutKeyboardFunc(onKeyDown);
+  glutKeyboardUpFunc(onKeyUp);
   glutPassiveMotionFunc(onMouseMove);
   glDepthFunc(GL_LEQUAL);
   glutSetKeyRepeat(0);
@@ -193,7 +198,7 @@ void configOpenGL(int argc, char** argv)
 int main(int argc, char** argv)
 {
   configOpenGL(argc, argv);
-  cam = CAM_create();
+  cam = CAM_create(firstPosition, keysPressed, mouseDelta);
   glutMainLoop();
 
   return 0;

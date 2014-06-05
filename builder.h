@@ -7,7 +7,7 @@
 			-	 rever parametros para contrucao de cubo/build
 	*/
 
-	void CUBE_build(GLfloat w, GLfloat h, GLfloat d, float angle);
-	void PLANE_build(float w, float h);
+	void CUBE_build(GLfloat w, GLfloat h, GLfloat d, float angle, float position[]);
+	void PLANE_build(float w, float h, float position[]);
 
 #endif

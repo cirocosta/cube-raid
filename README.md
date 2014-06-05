@@ -15,6 +15,12 @@
 $ make
 ```
 
+## Sobre o Branch
+
+O mesmo foi criado - e deve ser mantido - como um branch orfão (def a baixo) de modo que sirva apenas para testes e não se relacione diretamente com o histórico de commits (nunca deverá, portanto, ser fundido com o master).
+
+> **--orphan**: The first commit made on this new branch will have no parents and it will be the root of a new history totally disconnected from all the other branches and commits.
+
 #### License
 
 The MIT License (MIT)

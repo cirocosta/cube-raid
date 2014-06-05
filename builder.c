@@ -1,12 +1,12 @@
 #include "builder.h"
 
-void PLANE_build(float w, float h)
+void PLANE_build(float w, float h, float position[3])
 {
   float difamb[] = {0.3,1.0,0.6,1.0};
 
   glMatrixMode(GL_MODELVIEW);
-  glLoadIdentity();
-  glTranslatef(1.5, .0, -7.);
+  /*glLoadIdentity();*/
+  glTranslatef(position[0], position[1], position[2]);
 
   glBegin(GL_QUADS);
     glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, difamb);
@@ -17,12 +17,12 @@ void PLANE_build(float w, float h)
   glEnd();
 }
 
-void CUBE_build(GLfloat w, GLfloat h, GLfloat d, float angle)
+void CUBE_build(GLfloat w, GLfloat h, GLfloat d, float angle, float position[3])
 {
   float difamb[] = {1.0, 0.5, 0.3, 1.0};
   glMatrixMode(GL_MODELVIEW);
-  glLoadIdentity();
-  glTranslatef(1.5, .0, -7.);
+  /*glLoadIdentity();*/
+  glTranslatef(position[0], position[1], position[2]);
   glRotatef(angle, 1., 1.0, .0);
 
   glBegin(GL_QUADS);
