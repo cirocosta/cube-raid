@@ -5,13 +5,13 @@
 #include "GL/glew.h"
 #include "GL/freeglut.h"
 #include "camera.h"
-#include "mouse.h"
 
 /**
  * Config
  */
 bool paused         = false;
 bool fullScreenMode = false;
+bool warped         = false;
 int refreshMillis   = 16;
 float angle         = .0;
 int windowWidth     = 640;
@@ -20,7 +20,6 @@ int windowPosX      = 50;
 int windowPosY      = 50;
 
 Camera cam;
-Mouse mouse;
 bool IS_KEY_PRESSED[255];
 
 
@@ -188,10 +187,16 @@ void Timer(int value) {
    glutTimerFunc(refreshMillis, Timer, 0);
 }
 
-void onMouseMoved(int x, int y)
+void onMouseMove(int x, int y)
 {
-  printf("(%d,%d)\n", x, y);
+  printf("(%d %d)\n", windowWidth/2 - x, windowHeight/2 - y);
 
+  if (warped) {
+    warped = false;
+    return;
+  }
+  glutWarpPointer(windowWidth/2, windowHeight/2);
+  warped = true;
 }
 
 /**
@@ -218,7 +223,7 @@ void configOpenGL(int argc, char** argv)
   glutSpecialFunc(onSpecialKeyEnter);
   glutKeyboardFunc(onKeyboardEnter);
   glutKeyboardUpFunc(onKeyboardUp);
-  glutPassiveMotionFunc(onMouseMoved);
+  glutPassiveMotionFunc(onMouseMove);
   glDepthFunc(GL_LEQUAL);
   glutSetKeyRepeat(0);
 
@@ -249,7 +254,6 @@ int main(int argc, char** argv)
 {
   configOpenGL(argc, argv);
   cam = CAM_create();
-  mouse = MOUSE_create();
   glutMainLoop();
 
   return 0;

@@ -22,7 +22,7 @@ void CAM_destroy(Camera *cam)
   cam = NULL;
 }
 
-void  CAM_lockCamera(Camera *cam)
+void CAM_lockCamera(Camera *cam)
 {
   if (cam->camPitch > 90) cam->camPitch = 90;
   if (cam->camPitch < -90) cam->camPitch = -90;
@@ -68,7 +68,8 @@ void CAM_Control(Camera *cam, float moveVel, float mouseVel,
   }
 }
 
+/*
 void CAM_move(Camera *cam)
 {
   glTranslatef(-(cam->camX),-(cam->camY),-(cam->camZ));
-}
+}*/
