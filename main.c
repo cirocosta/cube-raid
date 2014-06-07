@@ -120,22 +120,6 @@ void onSpecialKeyEnter(int key, int x, int y)
   }
 }
 
-void onMouseClick(int button, int state, int x, int y)
-{
-  if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
-    paused = !paused;
-    if (paused) {
-      /* TODO[ciro] */
-      glutSetCursor(GLUT_CURSOR_LEFT_ARROW);
-      printf("%s\n", "The program is not paused");
-    } else {
-      /* TODO[ciro] */
-      glutSetCursor(GLUT_CURSOR_NONE);
-      printf("%s\n", "The program has been resumed");
-    }
-  }
-}
-
 void Timer(int value) {
    glutPostRedisplay();
    glutTimerFunc(refreshMillis, Timer, 0);
@@ -187,7 +171,6 @@ void configOpenGL(int argc, char** argv)
   glutDisplayFunc(renderScene);
   glutReshapeFunc(onWindowResize);
   glutTimerFunc(0, Timer, 0);
-  glutMouseFunc(onMouseClick);
   glutSpecialFunc(onSpecialKeyEnter);
   glutKeyboardFunc(onKeyDown);
   glutKeyboardUpFunc(onKeyUp);
