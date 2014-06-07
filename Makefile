@@ -2,23 +2,26 @@ LDLIBS = -lglut -lGLEW -lGL -lGLU -lm
 CFLAGS = -g -Wall -pedantic -ansi -Wno-unused-result -D _BSD_SOURCE
 CC = gcc
 
+D_LIBS = ./libs
+D_SRC = ./src
 
-main: main.c camera.o builder.o
+
+main: $(D_SRC)/main.c $(D_LIBS)/camera.o $(D_LIBS)/builder.o
 	@echo Building $@
 	@$(CC) $(CFLAGS) -o $@.out $^ $(LDLIBS)
 	./$@.out
 
-camera.o: camera.c
+$(D_LIBS)/camera.o: $(D_LIBS)/camera.c
 	@echo Building $@
-	@$(CC) $(CFLAGS) $^ -c
+	@$(CC) $(CFLAGS) $^ -c -o $@
 	@echo $@ DONE!
 
-builder.o: builder.c
+$(D_LIBS)/builder.o: $(D_LIBS)/builder.c
 	@echo Building $@
-	@$(CC) $(CFLAGS) $^ -c
+	@$(CC) $(CFLAGS) $^ -c -o $@
 	@echo $@ DONE!
 
-check-sanity.out: check-sanity.c
+check-sanity.out: $(D_SRC)/check-sanity.c
 	@echo Building $@
 	@$(CC) $(CFLAGS) $^ $(LDLIBS) -o $@
 	@echo $@ DONE!

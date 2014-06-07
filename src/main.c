@@ -4,8 +4,8 @@
 #include <math.h>
 #include "GL/glew.h"
 #include "GL/freeglut.h"
-#include "camera.h"
-#include "builder.h"
+#include "../libs/camera.h"
+#include "../libs/builder.h"
 
 /**
  * Config
