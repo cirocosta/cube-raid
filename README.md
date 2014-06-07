@@ -2,6 +2,15 @@
 
 > Branch de testes para o OpenGL
 
+## TODO
+
+-	[] renderização de textos
+-	[] implementação do observer pattern para eventos
+-	[] atualização de texto com base em eventos
+-	[] pausa no jogo (coloca algo na frente da tela e tudo 'stoppa')
+-	[] texturas
+
+
 ## Requisitos
 
 -	freeglut
