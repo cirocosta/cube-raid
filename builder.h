@@ -3,11 +3,8 @@
 	#include "GL/glew.h"
 	#include "GL/freeglut.h"
 
-	/* TODO[ciro]
-			-	 rever parametros para contrucao de cubo/build
-	*/
 
-	void CUBE_build(GLfloat w, GLfloat h, GLfloat d, float angle, float position[]);
-	void PLANE_build(float w, float h, float position[]);
+	void CUBE_build(GLfloat xyz[3], GLfloat position[3], GLfloat angle);
+	void PLANE_build(GLfloat xyz[3], GLfloat position[3]);
 
 #endif

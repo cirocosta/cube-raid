@@ -15,9 +15,15 @@ bool paused         = false
   , warped          = false
   , keysPressed[255];
 
-float angle         = .0
-  ,   mouseDelta[2] = {.0, .0}
-  ,   firstPosition[3] = {.0, .0, -9.};
+GLfloat mouseDelta[2] = {.0, .0}
+  ,   firstPosition[3] = {.0, .0, -9.}
+
+  ,   cubeSize[3] = {1., 1., 1.}
+
+  ,   bulbPosition[3] = {.0, 7.0, -9.}
+  ,   bulbSize[3] = {.2, 1.3, .2}
+
+  ,   planeSize[3] = {10., 1., 100.};
 
 int refreshMillis   = 16
   , iWindowWidth    = 640
@@ -47,8 +53,11 @@ void renderScene()
   /* before rendering the grahics. */
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-  PLANE_build(1., 1., firstPosition);
-  CUBE_build(1., 1., 1., angle, firstPosition);
+  PLANE_build(planeSize, firstPosition);
+  CUBE_build(cubeSize, firstPosition, .0);
+  CUBE_build(bulbSize, bulbPosition, 90.);
+
+  glutSolidSphere (1.0, 20, 16);
 
   glLoadIdentity();
   CAM_updateCamera(&cam);
@@ -144,15 +153,29 @@ void onMouseMove(int x, int y)
   centerPointer();
 }
 
+void enableFog(GLfloat start, GLfloat end, GLfloat dens, GLfloat fogColor[])
+{
+  glEnable(GL_FOG);
+  /**
+   * Habilitando nevoa
+   */
+  glFogi(GL_FOG_MODE, GL_EXP);
+  glFogf(GL_FOG_START, 1.0);
+  glFogf(GL_FOG_END, 10.0);
+  glFogfv(GL_FOG_COLOR, fogColor);
+  glFogf(GL_FOG_DENSITY, .2);
+}
+
 /**
  * Prepara OpenGL para que possamos iniciar nosso desenho.
  */
 void configOpenGL(int argc, char** argv)
 {
-  float dif[] = {.2, .2, .2, .0};
-  float amb[] = {0.2, 0.2, 0.2, 1.0};
-  float spec[] = {.0, .0, .0, .0};
-  float lpos[] = {1., 1., 1., 0};
+  GLfloat dif[] = {.2, .2, .2, .0}
+    ,     amb[] = {0.2, 0.2, 0.2, 1.0}
+    ,     spec[] = {.0, .0, .0, .0}
+    ,     lpos[] = {1., 1., 1., 1}
+    ,     fogColor[] = {.5, .5, .5, 1.};
 
   /* Inicializando janela */
   glutInit(&argc, argv);
@@ -181,15 +204,18 @@ void configOpenGL(int argc, char** argv)
   glEnable(GL_LIGHTING);
   glEnable(GL_LIGHT0);
 
+
+  /*enableFog(1., 10., .2, fogColor);*/
+
   /**
    * Ambient: luz a iluminar todo e qualquer ponto na cena
    * Diffuse: luz a iluminar objetos em torno
    * Specular: iluminar determinadas áreas
    */
-  glLightfv(GL_LIGHT0, GL_DIFFUSE, dif);
+  /*glLightfv(GL_LIGHT0, GL_DIFFUSE, dif);*/
   glLightfv(GL_LIGHT0, GL_AMBIENT, amb);
-  glLightfv(GL_LIGHT0, GL_SPECULAR, spec);
-  glLightfv(GL_LIGHT0, GL_POSITION, lpos);
+  /*glLightfv(GL_LIGHT0, GL_SPECULAR, spec);*/
+  /*glLightfv(GL_LIGHT0, GL_POSITION, lpos);*/
 
   glShadeModel(GL_SMOOTH);
   glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);

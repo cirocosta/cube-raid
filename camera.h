@@ -18,7 +18,7 @@
 
   typedef struct Camera
   {
-    float camX
+    GLfloat camX
       ,   camY
       ,   camZ
       ,   camYaw
@@ -30,17 +30,17 @@
     bool *keysPressed;
   } Camera;
 
-  Camera CAM_create(float position[], bool *keysPressed, float *mouseDelta);
+  Camera CAM_create(GLfloat position[], bool *keysPressed, GLfloat *mouseDelta);
   void CAM_destroy(Camera *cam);
-  void CAM_setSensibility(Camera *cam, float mouse, float move);
+  void CAM_setSensibility(Camera *cam, GLfloat mouse, GLfloat move);
   /**
    * Faz com que a camera fique sempre :
    *  - entre [-90, 90] graus de inclinacao.
    *  - com os graus de guinada em [0, 360 graus]
    */
   void CAM_lockCamera(Camera *cam);
-  void CAM_moveCamera(Camera *cam, float dir);
-  void CAM_moveCameraUp(Camera *cam, float dir);
+  void CAM_moveCamera(Camera *cam, GLfloat dir);
+  void CAM_moveCameraUp(Camera *cam, GLfloat dir);
   void CAM_Control(Camera *cam);
   void CAM_updateCamera(Camera *cam);
   char * CAM_toString(Camera *cam);

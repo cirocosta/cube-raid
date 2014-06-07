@@ -1,6 +1,6 @@
 #include "camera.h"
 
-Camera CAM_create(float position[], bool *keysPressed, float *mouseDelta){
+Camera CAM_create(GLfloat position[], bool *keysPressed, GLfloat *mouseDelta){
   Camera *cam = malloc(sizeof(*cam));
 
   if (cam == NULL) {
@@ -23,7 +23,7 @@ Camera CAM_create(float position[], bool *keysPressed, float *mouseDelta){
   return *cam;
 }
 
-void CAM_setSensibility(Camera *cam, float mouse, float move)
+void CAM_setSensibility(Camera *cam, GLfloat mouse, GLfloat move)
 {
   cam->mouseVel = 1.;
   cam->moveVel = 1.;
@@ -43,17 +43,17 @@ void CAM_lockCamera(Camera *cam)
   if (cam->camYaw > 360.) cam->camYaw -= 360.;
 }
 
-void CAM_moveCamera(Camera *cam, float dir)
+void CAM_moveCamera(Camera *cam, GLfloat dir)
 {
-  float rad= (cam->camYaw + dir) * (M_PI/180.0);
+  GLfloat rad= (cam->camYaw + dir) * (M_PI/180.0);
 
   cam->camX -= sin(rad) * cam->moveVel;
   cam->camZ -= cos(rad) * cam->moveVel;
 }
 
-void CAM_moveCameraUp(Camera *cam, float dir)
+void CAM_moveCameraUp(Camera *cam, GLfloat dir)
 {
-  float rad= (cam->camPitch + dir) * (M_PI/180.0);
+  GLfloat rad= (cam->camPitch + dir) * (M_PI/180.0);
 
   cam->camY += sin(rad) * cam->moveVel;
 }
