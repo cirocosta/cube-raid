@@ -57,8 +57,6 @@ void renderScene()
   /* before rendering the grahics. */
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-  textCounter->text = "dahora";
-  TDRAWER_draw(textCounter);
 
   printf("%f %f %f\n", textCounter->position[0], textCounter->position[1], textCounter->position[2]);
   printf("%f %f %f %f\n", textCounter->color[0], textCounter->color[1], textCounter->color[2], textCounter->color[3]);
@@ -72,6 +70,9 @@ void renderScene()
 
   glLoadIdentity();
   CAM_updateCamera(&cam);
+
+  textCounter->text = "dahora";
+  TDRAWER_draw(textCounter);
 
   glutSwapBuffers();
 }
