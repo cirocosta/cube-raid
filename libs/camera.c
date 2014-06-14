@@ -85,7 +85,7 @@ void CAM_control(Camera *cam)
   cam->mouseDelta[1] = .0;
 
   /* DEBUG */
-  printf("%s\n", CAM_toString(cam));
+  /*printf("%s\n", CAM_toString(cam));*/
 }
 
 

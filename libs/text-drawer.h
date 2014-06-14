@@ -1,3 +1,8 @@
+/**
+ * Auxiliary drawer for GLUT bitmap fonts drawer. We could simply use
+ * textures for this.
+ */
+
 #ifndef TEXT_DRAWER_H
   #define TEXT_DRAWER_H
 

@@ -6,6 +6,7 @@
 #include "GL/freeglut.h"
 #include "../libs/camera.h"
 #include "../libs/builder.h"
+#include "../libs/text-drawer.h"
 
 /**
  * Config
@@ -14,6 +15,9 @@ bool paused         = false
   , fullScreenMode  = false
   , warped          = false
   , keysPressed[255];
+
+TDRAWER_Text *textCounter;
+int counter;
 
 GLfloat mouseDelta[2] = {.0, .0}
   ,   firstPosition[3] = {.0, .0, -9.}
@@ -53,6 +57,13 @@ void renderScene()
   /* before rendering the grahics. */
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+  textCounter->text = "dahora";
+  TDRAWER_draw(textCounter);
+
+  printf("%f %f %f\n", textCounter->position[0], textCounter->position[1], textCounter->position[2]);
+  printf("%f %f %f %f\n", textCounter->color[0], textCounter->color[1], textCounter->color[2], textCounter->color[3]);
+
+
   PLANE_build(planeSize, firstPosition);
   CUBE_build(cubeSize, firstPosition, .0);
   CUBE_build(bulbSize, bulbPosition, 90.);
@@ -85,6 +96,9 @@ void onKeyDown(unsigned char key, int x, int y)
   keysPressed[key] = true;
 
   switch (key) {
+    case 99:
+      counter++;
+      break;
     case 27:   /* ESC */
     case 113:  /* Q */
        exit(0);
@@ -208,6 +222,7 @@ int main(int argc, char** argv)
 {
   configOpenGL(argc, argv);
   cam = CAM_create(firstPosition, keysPressed, mouseDelta);
+  textCounter = TDRAWER_new("");
   glutMainLoop();
 
   return 0;

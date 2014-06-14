@@ -6,7 +6,7 @@ D_LIBS = ./libs
 D_SRC = ./src
 
 
-main: $(D_SRC)/main.c $(D_LIBS)/camera.o $(D_LIBS)/builder.o
+main: $(D_SRC)/main.c $(D_LIBS)/camera.o $(D_LIBS)/builder.o $(D_LIBS)/text-drawer.o
 	@echo Building $@
 	@$(CC) $(CFLAGS) -o $@.out $^ $(LDLIBS)
 	./$@.out
@@ -17,6 +17,11 @@ $(D_LIBS)/camera.o: $(D_LIBS)/camera.c
 	@echo $@ DONE!
 
 $(D_LIBS)/builder.o: $(D_LIBS)/builder.c
+	@echo Building $@
+	@$(CC) $(CFLAGS) $^ -c -o $@
+	@echo $@ DONE!
+
+$(D_LIBS)/text-drawer.o: $(D_LIBS)/text-drawer.c
 	@echo Building $@
 	@$(CC) $(CFLAGS) $^ -c -o $@
 	@echo $@ DONE!
