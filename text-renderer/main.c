@@ -2,39 +2,22 @@
 #include <string.h>
 #include "GL/glew.h"
 #include "GL/freeglut.h"
+#include "text-drawer.h"
 
 GLfloat x = .0
-	,			y = .0;
+	,			y = .0
+  ,     z = .0;
+
+char * text = "dahora";
+TDRAWER_Text * text1;
 
 int refreshMillis = 16;
-
-/**
- * Fontes que estou disponibilizando
- */
-void * BITMAP_FONTS[3] = {
-  GLUT_BITMAP_HELVETICA_10,
-  GLUT_BITMAP_HELVETICA_12,
-  GLUT_BITMAP_HELVETICA_18
-};
-
-void printBitmapString(void * font, char * s)
-{
-	if (s && strlen(s)) {
-		while (*s) {
-			glutBitmapCharacter(font, *s);
-			s++;
-		}
-	}
-}
 
 void onDisplay()
 {
   glClear(GL_COLOR_BUFFER_BIT);
-  glLoadIdentity();
 
-  glColor3f(1., 1., 1.);
-  glRasterPos2f(x += .01, y += .01);
-  printBitmapString(BITMAP_FONTS[2], "Something cool!");
+  TDRAWER_draw(text1);
 
   glutSwapBuffers();
 }
@@ -59,17 +42,19 @@ void Timer(int value) {
 
 int main(int argc, char **argv)
 {
-   glutInitWindowSize(500, 250);
-   glutInit(&argc, argv);
-   glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE);
+	glutInitWindowSize(500, 250);
+	glutInit(&argc, argv);
+	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE);
 
-   glutCreateWindow("TextRenderer!");
+	glutCreateWindow("TextRenderer!");
 
-   glutDisplayFunc(onDisplay);
-   glutReshapeFunc(onWindowResize);
-   glutTimerFunc(0, Timer, 0);
+	text1 = TDRAWER_new(text);
 
-   glutMainLoop();
+	glutDisplayFunc(onDisplay);
+	glutReshapeFunc(onWindowResize);
+	glutTimerFunc(0, Timer, 0);
+
+	glutMainLoop();
 
 	return 0;
 }

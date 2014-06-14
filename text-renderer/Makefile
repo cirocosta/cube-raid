@@ -2,9 +2,13 @@ LDLIBS = -lglut -lGLEW -lGL -lGLU -lm
 CFLAGS = -g -Wall -pedantic -ansi -Wno-unused-result -D _BSD_SOURCE
 CC = gcc
 
-main.out: main.c
+main.out: main.c text-drawer.o
 	@echo Building $@
 	@$(CC) $(CFLAGS) -o $@ $^ $(LDLIBS)
+
+text-drawer.o: text-drawer.c
+	@echo Building $@
+	@$(CC) $(CFLAGS) $^ -c -o $@
 
 glutfonts.out: glutfonts.o
 	@echo Building $@
