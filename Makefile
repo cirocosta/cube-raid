@@ -11,7 +11,7 @@ TEST_UNIT_DIR = test/unit
 # --- MAIN ---
 
 all: models lib
-	@$(CC) $(CFLAGS) -o main.out src/main.c $(MAP_DIR)/map1.o $(MODEL_DIR)/models.a $(LIB_DIR)/lib.a -lm
+	@$(CC) $(CFLAGS) -o main.out src/main.c $(MODEL_DIR)/models.a $(LIB_DIR)/lib.a -lm
 	@echo [BUILD] Building main.out [OK]
 
 lib:
