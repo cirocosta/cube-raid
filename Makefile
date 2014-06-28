@@ -1,4 +1,5 @@
 CFLAGS = -g -Wall -pedantic -ansi -Wno-unused-result -D _BSD_SOURCE
+LDLIBS = -lglut -lGLEW -lGL -lGLU -lm
 CC = gcc
 
 # --- DIR ----
@@ -13,6 +14,9 @@ TEST_UNIT_DIR = test/unit
 all: models lib
 	@$(CC) $(CFLAGS) -o main.out src/main.c $(MODEL_DIR)/models.a $(LIB_DIR)/lib.a -lm
 	@echo [BUILD] Building main.out [OK]
+
+src/main.out: src/main.c
+	@$(CC) $^ $(CFLAGS) $(LDLIBS) -o $@
 
 lib:
 	@$(CC) $(CFLAGS) -c -o $(LIB_DIR)/circularbuffer.o $(LIB_DIR)/circularbuffer.c
