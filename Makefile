@@ -15,9 +15,6 @@ all: models lib
 	@$(CC) $(CFLAGS) -o main.out src/main.c $(MODEL_DIR)/models.a $(LIB_DIR)/lib.a -lm
 	@echo [BUILD] Building main.out [OK]
 
-src/main.out: src/main.c
-	@$(CC) $^ $(CFLAGS) $(LDLIBS) -o $@
-
 lib:
 	@$(CC) $(CFLAGS) -c -o $(LIB_DIR)/circularbuffer.o $(LIB_DIR)/circularbuffer.c
 	@$(CC) $(CFLAGS) -c -o $(LIB_DIR)/queue.o $(LIB_DIR)/queue.c
@@ -63,6 +60,16 @@ test: lib models maps
 	@echo [TEST-MODEL] Tiro [OK]
 	@./$(TEST_UNIT_DIR)/test_keyboard.out
 	@echo [TEST-MODEL] Keyboard [OK]
+
+## OPENGL STUFF
+
+src/main.out: src/main.c $(LIB_DIR)/glutils.o
+	@$(CC) $^ $(CFLAGS) $(LDLIBS) -o $@ && ./$@
+
+$(LIB_DIR)/glutils.o: $(LIB_DIR)/glutils.c
+	@$(CC) $(CFLAGS) $^ -c -o $@
+
+## CLEAN :0
 
 clean:
 	find . -name \*.o -delete
