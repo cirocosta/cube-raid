@@ -22,7 +22,7 @@ void TDRAWER_draw(TDRAWER_Text * this)
                 this->color[2],
                 this->color[3]);
       while (*this->text) {
-        printf("%c\n", *this->text);
+        /*printf("%c\n", *this->text);*/
         glutBitmapCharacter(this->font, *this->text);
         this->text++;
       }

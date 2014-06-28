@@ -57,16 +57,9 @@ void renderScene()
   /* before rendering the grahics. */
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-
-  printf("%f %f %f\n", textCounter->position[0], textCounter->position[1], textCounter->position[2]);
-  printf("%f %f %f %f\n", textCounter->color[0], textCounter->color[1], textCounter->color[2], textCounter->color[3]);
-
-
-  PLANE_build(planeSize, firstPosition);
+  PLANE_build(planeSize, firstPosition, PLANE_TOP);
   CUBE_build(cubeSize, firstPosition, .0);
   CUBE_build(bulbSize, bulbPosition, 90.);
-
-  glutSolidSphere (1.0, 20, 16);
 
   glLoadIdentity();
   CAM_updateCamera(&cam);
