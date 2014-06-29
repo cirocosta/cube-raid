@@ -1,16 +1,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <math.h>
+#ifndef M_PI
+	#define M_PI 3.14159265
+#endif
 #include "GL/glew.h"
 #include "GL/freeglut.h"
 #include "lib/glutils.h"
+
+#define TWO_PI	(2*M_PI)
 
 /**
  * Config
  */
 
-bool fullScreenMode  = false
-  , keysPressed[255];
+bool 	fullScreenMode  = false
+  , 	keysPressed[255];
 
 int refreshMillis   = 16
 	, iWindowWidth    = 640
@@ -21,10 +27,20 @@ int refreshMillis   = 16
 	,  windowPosY     = 50;
 
 GLfloat z 								= 1.
-	,   	posCube[3] 				= {3., .0, -30.}
-	,			planeSize[3] 			= {10., 1., 100.}
-	,			colorText[4] 			=	{1., .5, .3, 1.}
+	,			planeSizel[3] 		= {10., 1., 100.}
+	,			planeSizet[3] 		= {10., 1., 100.}
+	,			planeSizer[3] 		= {10., 1., 100.}
 	,			cubeSize[3] 			= {1., 1., 1.}
+
+	,			colorText[4] 			=	{1., 1., 1., 1.}
+
+	,			lAmbient[4] 			=	{.0, .0, .0, 1.}
+	,			lDiffuse[4] 			=	{1., 1., 1., 1.}
+	,			lSpecular[4] 			=	{1., 1., 1., 1.}
+
+	,			posLight[3]				=	{-10.0, 10., 0.}
+	,   	posCube[3] 				= {3., .0, -30.}
+	,			posText[3]				= {.3, 1.7, .0}
 	,			posLeftPlane[3] 	= {-20., .0, -9.}
 	,			posBottonPlane[3] = {.0, .0, -9.}
 	,			posRightPlane[3] 	= {20., .0, -9.};
@@ -33,27 +49,34 @@ GLfloat z 								= 1.
  * Aux Functions
  */
 
+void printFloat(float f[3])
+{
+	printf("%f %f %f\n", f[0],f[1],f[2]);
+}
+
 void renderScene()
 {
 	z += .1;
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	TEXT_draw("DAHORA A VIDA", 2., posCube, colorText);
+	posText[2] = posLight[2] = -z - 5;
+
+	glLightfv(GL_LIGHT0, GL_POSITION, posLight);
+	TEXT_draw("DAHORA A VIDA", 2., posText, colorText);
 
 	/* CENARIO CONSTRUCTION */
 
 	CUBE_build(cubeSize, posCube, .0);
 
-	PLANE_build(planeSize, posLeftPlane, PLANE_SIDE_LEFT);
-	PLANE_build(planeSize, posBottonPlane, PLANE_TOP);
-	PLANE_build(planeSize, posRightPlane, PLANE_SIDE_RIGHT);
+	PLANE_build(planeSizel, posLeftPlane, PLANE_SIDE_LEFT);
+	PLANE_build(planeSizet, posBottonPlane, PLANE_TOP);
+	PLANE_build(planeSizer, posRightPlane, PLANE_SIDE_RIGHT);
 
 	/* CENARIO CONSTRUCTION */
-
-	printf("%f\n", z);
 
 	glLoadIdentity();
 	glTranslatef(.0, .0, z);
 	glutSwapBuffers();
+
 }
 
 void resizeWindow(GLsizei w, GLsizei h)
@@ -116,8 +139,6 @@ void onSpecialKeyEnter(int key, int x, int y)
 
 void configOpenGL(int argc, char** argv)
 {
-	GLfloat amb[] = {0.2, 0.2, 0.2, 1.0};
-
 	/* Inicializando janela */
 	glutInit(&argc, argv);
 	glutInitWindowSize(640, 480);
@@ -140,14 +161,25 @@ void configOpenGL(int argc, char** argv)
 
 	/* Habilitando funcionalidades */
 	glEnable(GL_DEPTH_TEST);
+	/*glLightModeli(GL_LIGHT_MODEL_LOCAL_VIEWER, GL_TRUE);*/
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
+	glEnable(GL_COLOR_MATERIAL);
 
-	glLightfv(GL_LIGHT0, GL_AMBIENT, amb);
+	/* Configurando luz ambiente */
+	glLightfv(GL_LIGHT0, GL_AMBIENT, lAmbient);
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, lDiffuse);
+	glLightfv(GL_LIGHT0, GL_SPECULAR, lSpecular);
+	glLightfv(GL_LIGHT0, GL_POSITION, posLight);
 
+	glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);
 	glShadeModel(GL_SMOOTH);
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 }
+
+/**
+ * Função principal
+ */
 
 int main(int argc, char** argv)
 {

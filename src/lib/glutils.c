@@ -2,7 +2,12 @@
 
 void PLANE_build(GLfloat xyz[3], GLfloat position[3], PLANE_type tipo)
 {
-  GLfloat difamb[] = {0.8,1.0,0.6,1.0};
+  GLfloat shininess[] = {90}
+    ,     qaBlack[4] = {.0, .0, .0, 1.}
+    ,     qaWhite[4] = {1., 1., 1., 1.}
+    ,     qaRed[4]  = {1., 1., .0, 1.}
+    ,     qaGreen[4] = {.0, 1., .0, 1.}
+    ,     qaBlue[4]   = {.0, .0, 1., 1.};
 
   glPushMatrix();
     glMatrixMode(GL_MODELVIEW);
@@ -21,9 +26,13 @@ void PLANE_build(GLfloat xyz[3], GLfloat position[3], PLANE_type tipo)
         break;
     }
 
-    glBegin(GL_QUADS);
-      glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, difamb);
-      glNormal3f(1.0, 0., .0);
+    glBegin(GL_QUADS);/*
+      glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, qaGreen);
+      glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, qaGreen);
+      glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, qaWhite);
+      glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, shininess);*/
+
+      glNormal3f(.0, 0., 1.0);
       glVertex3f(xyz[0]* 10.0, xyz[1]*-1.0, xyz[2]* 100.0);
       glVertex3f(xyz[0]*-10.0, xyz[1]*-1.0, xyz[2]* 100.0);
       glVertex3f(xyz[0]*-10.0, xyz[1]*-1.0, xyz[2]*-100.0);
@@ -34,14 +43,23 @@ void PLANE_build(GLfloat xyz[3], GLfloat position[3], PLANE_type tipo)
 
 void CUBE_build(GLfloat xyz[3], GLfloat position[3], GLfloat angle)
 {
-  GLfloat difamb[] = {1.0, 0.5, 0.3, 1.0};
+  GLfloat shininess[] = {30}
+    ,     qaBlack[4] = {.0, .0, .0, 1.}
+    ,     qaWhite[4] = {1., 1., 1., 1.}
+    ,     qaRed[4]  = {1., 1., .0, 1.}
+    ,     qaGreen[4] = {.0, 1., .0, 1.}
+    ,     qaBlue[4]   = {.0, .0, 1., 1.};
+
   glPushMatrix();
     glMatrixMode(GL_MODELVIEW);
     glTranslatef(position[0], position[1], position[2]);
     glRotatef(angle, 1., 1.0, .0);
 
     glBegin(GL_QUADS);
-      glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, difamb);
+
+      glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, qaRed);
+      glMaterialfv(GL_FRONT, GL_SPECULAR, qaWhite);
+      glMaterialfv(GL_FRONT, GL_SHININESS, shininess);
 
       /* Top face */
       glNormal3f(.0, 1.0, .0);
