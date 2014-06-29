@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include "GL/glew.h"
 #include "GL/freeglut.h"
 #include "lib/glutils.h"
@@ -7,6 +8,9 @@
 /**
  * Config
  */
+
+bool fullScreenMode  = false
+  , keysPressed[255];
 
 int refreshMillis   = 16
 	, iWindowWidth    = 640
@@ -68,6 +72,46 @@ void tickTimer(int value) {
 	 glutTimerFunc(refreshMillis, tickTimer, 0);
 }
 
+void onKeyDown(unsigned char key, int x, int y)
+{
+  keysPressed[key] = true;
+
+  switch (key) {
+    case 27:   /* ESC */
+    case 113:  /* Q */
+       exit(0);
+       break;
+  }
+}
+
+void onKeyUp(unsigned char key, int x, int y)
+{
+  keysPressed[key] = false;
+}
+
+/**
+ * Callback for special input, like arrow and etc. (x,y) are the
+ * position of the mouse at the moment of the fire of the event.
+ */
+void onSpecialKeyEnter(int key, int x, int y)
+{
+  switch (key) {
+    case GLUT_KEY_F1:
+      fullScreenMode = !fullScreenMode;
+      if (fullScreenMode) {
+        windowPosX = glutGet(GLUT_WINDOW_X);
+        windowPosY = glutGet(GLUT_WINDOW_Y);
+        iWindowWidth = glutGet(GLUT_WINDOW_WIDTH);
+        iWindowHeight = glutGet(GLUT_WINDOW_HEIGHT);
+        glutFullScreen();
+      } else {
+        glutReshapeWindow(iWindowWidth, iWindowHeight);
+        glutPositionWindow(windowPosX, windowPosY);
+      }
+    break;
+  }
+}
+
 void configOpenGL(int argc, char** argv)
 {
 	GLfloat amb[] = {0.2, 0.2, 0.2, 1.0};
@@ -82,6 +126,9 @@ void configOpenGL(int argc, char** argv)
 	glutDisplayFunc(renderScene);
 	glutReshapeFunc(resizeWindow);
 	glutTimerFunc(0, tickTimer, 0);
+  glutSpecialFunc(onSpecialKeyEnter);
+  glutKeyboardFunc(onKeyDown);
+  glutKeyboardUpFunc(onKeyUp);
 	glDepthFunc(GL_LEQUAL);
 	glutSetKeyRepeat(0);
 
