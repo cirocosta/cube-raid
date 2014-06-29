@@ -11,8 +11,8 @@ TEST_UNIT_DIR = test/unit
 
 # --- MAIN ---
 
-all: models lib
-	@$(CC) $(CFLAGS) -o main.out src/main.c $(MODEL_DIR)/models.a $(LIB_DIR)/lib.a -lm
+all: models lib $(LIB_DIR)/glutils.o
+	@$(CC) $(CFLAGS) -o main.out src/main.c $(MODEL_DIR)/models.a $(LIB_DIR)/lib.a $(LIB_DIR)/glutils.o $(LDLIBS) && ./main.out
 	@echo [BUILD] Building main.out [OK]
 
 lib:
@@ -60,14 +60,6 @@ test: lib models maps
 	@echo [TEST-MODEL] Tiro [OK]
 	@./$(TEST_UNIT_DIR)/test_keyboard.out
 	@echo [TEST-MODEL] Keyboard [OK]
-
-## OPENGL STUFF
-
-src/main.out: src/main.c $(LIB_DIR)/glutils.o
-	@$(CC) $^ $(CFLAGS) $(LDLIBS) -o $@ && ./$@
-
-$(LIB_DIR)/glutils.o: $(LIB_DIR)/glutils.c
-	@$(CC) $(CFLAGS) $^ -c -o $@
 
 ## CLEAN :0
 
