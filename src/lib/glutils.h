@@ -4,6 +4,7 @@
 	#include <math.h>
 	#include "GL/glew.h"
 	#include "GL/freeglut.h"
+	#include "position.h"
   #ifndef M_PI
     #define M_PI 3.14159265
   #endif
@@ -18,11 +19,11 @@
 	} PLANE_type;
 
 	void CUBE_build(GLfloat xyz[3],
-	                GLfloat position[3],
+	                Position pos,
 	                GLfloat angle);
 
 	void PLANE_build(GLfloat xyz[3],
-	                 GLfloat position[3],
+	                 Position pos,
 	                 PLANE_type tipo);
 
 	void TEXT_draw(char * message,

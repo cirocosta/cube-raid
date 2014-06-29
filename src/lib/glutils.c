@@ -1,15 +1,10 @@
 #include "glutils.h"
 
-void PLANE_build(GLfloat xyz[3], GLfloat position[3], PLANE_type tipo)
+void PLANE_build(GLfloat xyz[3], Position pos, PLANE_type tipo)
 {
-  int i, j;
-  float h = 16,
-        w = 16;
-  float dw = 1.0 / w;
-  float dh = 1.0 / h;
   glPushMatrix();
     glMatrixMode(GL_MODELVIEW);
-    glTranslatef(position[0], position[1], position[2]);
+    glTranslatef(pos.x, pos.y, pos.z);
 
     switch (tipo) {
       case PLANE_SIDE_RIGHT:
@@ -35,11 +30,11 @@ void PLANE_build(GLfloat xyz[3], GLfloat position[3], PLANE_type tipo)
   glPopMatrix();
 }
 
-void CUBE_build(GLfloat xyz[3], GLfloat position[3], GLfloat angle)
+void CUBE_build(GLfloat xyz[3], Position pos, GLfloat angle)
 {
   glPushMatrix();
     glMatrixMode(GL_MODELVIEW);
-    glTranslatef(position[0], position[1], position[2]);
+    glTranslatef(pos.x, pos.y, pos.z);
     glRotatef(angle, 1., 1.0, .0);
 
     glBegin(GL_QUADS);

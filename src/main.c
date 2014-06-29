@@ -2,16 +2,26 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <math.h>
+
 #include "GL/glew.h"
 #include "GL/freeglut.h"
+
 #include "lib/glutils.h"
+#include "lib/position.h"
+#include "models/nave.h"
+
 #ifndef TWO_PI
 	#define TWO_PI	(2*M_PI)
 #endif
 
+
+Nave nave;
+
 /**
  * Config
  */
+
+Position posCube;
 
 static bool 	fullScreenMode  = false
   	, 				keysPressed[255];
@@ -23,12 +33,8 @@ static int 	refreshMillis   = 16
 		,		     windowPosY     = 50;
 
 static GLfloat z 						= 1.
-		,			planeSizel[3] 		= {10., 1., 35.}
-		,			planeSizet[3] 		= {10., 1., 35.}
-		,			planeSizer[3] 		= {10., 1., 35.}
 		,			cubeSize[3] 			= {1., 1., 1.}
 		,			colorText[4] 			=	{1., 1., 1., 1.}
-		,   	posCube[3] 				= {3., .0, -30.}
 		,			posText[3]				= {.3, 1.7, .0}
 		,			posLeftPlane[3] 	= {-20., .0, 0.}
 		,			posBottonPlane[3] = {.0, .0, 0.}
@@ -74,25 +80,19 @@ void printFloat(float f[3])
 void renderScene()
 {
 	z += .1;
+	nave.pos.z = -z - 5;
+	posText[2] = -z - 5;
+
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	LIGHT_set(light, GL_LIGHT0);
-
-	posText[2] = -z - 5;
 	TEXT_draw("DAHORA A VIDA", 2., posText, colorText);
-
-	/* CENARIO CONSTRUCTION */
-
 	CUBE_build(cubeSize, posCube, .0);
-
-	/* CENARIO CONSTRUCTION */
-
+	NAVE_draw(&nave);
 	LIGHT_draw(light);
 
 	glLoadIdentity();
 	glTranslatef(.0, .0, z);
-
-	printf("%f\n", z);
 
 	glutSwapBuffers();
 }
@@ -205,6 +205,14 @@ void configOpenGL(int argc, char** argv)
 
 int main(int argc, char** argv)
 {
+	posCube = POS_create(1., .0, -30.);
+
+	nave = NAVE_create(
+    		POS_create(0., -.8, 0.), 	/* Position */
+    		1,							/* Velocity */
+				POS_create(10., 10., 10.),	/* Orientation */
+				10);
+
 	configOpenGL(argc, argv);
 	glutMainLoop();
 

@@ -1,6 +1,7 @@
 #ifndef NAVE_H
 #define NAVE_H
 #include "../lib/position.h"
+#include "../lib/glutils.h"
 #include <stdio.h>
 
 /**
@@ -49,5 +50,7 @@ void NAVE_update(Nave *nave, int key);
  * @param nave Nave a mostrar
  */
 void NAVE_show(Nave *nave);
+
+void NAVE_draw(Nave *nave);
 
 #endif

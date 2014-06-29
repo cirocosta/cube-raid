@@ -8,7 +8,7 @@ Nave NAVE_create(Position pos, float vel, Position orientation, int hp)
 	nave->vel = vel;
 	nave->orientation = orientation;
 	nave->hp = hp;
-	nave->radius = 3.0;
+	nave->radius = 1.0;
 	nave->visibility = 5.0;
 
 	return *nave;
@@ -20,12 +20,18 @@ void NAVE_destroy(Nave *nave)
     free(nave);
 }
 
+void NAVE_draw(Nave *nave)
+{
+	float size[3] = {.5, .5, .5};
+
+	CUBE_build(size, nave->pos, .0);
+}
+
 void NAVE_update(Nave *nave, int key)
 {
 	nave->pos.x += nave->orientation.x;
 	nave->pos.y += nave->orientation.y;
 	nave->pos.z += nave->vel;
-
 
 	nave->orientation.x = 0;
 	nave->orientation.y = 0;
