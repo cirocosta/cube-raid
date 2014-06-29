@@ -11,7 +11,7 @@ void CENARIO_consume_map(Queue map)
 	CircularBuffer *cb;
 	int key;
 
-	/* Create Aircraft */
+	/* Creates Aircraft */
     nave = NAVE_create(
     		POS_create(0., 0., 0.), 	/* Position */
     		1,							/* Velocity */
@@ -19,7 +19,7 @@ void CENARIO_consume_map(Queue map)
             10 							/* HP */
     );
 
-    /* Initialize Keyboard Input */
+    /* Initializes Keyboard Input */
     key = -1;
     KEYBOARD_init();
 

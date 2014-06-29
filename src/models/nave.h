@@ -51,6 +51,9 @@ void NAVE_update(Nave *nave, bool * keysPressed, float z);
  */
 void NAVE_show(Nave *nave);
 
+/**
+ * Desenha a nave na tela dadas as posicoes do elemento passado.
+ */
 void NAVE_draw(Nave *nave);
 
 #endif

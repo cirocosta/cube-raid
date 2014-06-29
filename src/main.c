@@ -14,13 +14,7 @@
 	#define TWO_PI	(2*M_PI)
 #endif
 
-Nave nave;
-
-/**
- * Config
- */
-
-Position posCube;
+/* Config */
 
 static bool 	fullScreenMode  = false
   	, 				keysPressed[255];
@@ -36,9 +30,7 @@ static GLfloat z 						= 1.
 		,			colorText[4] 			=	{1., 1., 1., 1.}
 		,			posText[3]				= {.3, 1.7, .0};
 
-static Light spots[] =
-{
-  /* LUZ BRANCA! */
+static Light spots[] = {
   {
     {0.2, 0.2, 0.2, 1.0},  /* ambient */
     {0.8, 0.8, 0.8, 1.0},  /* diffuse */
@@ -62,17 +54,13 @@ static float modelAmb[4] = {0.2, 0.2, 0.2, 1.0}
       ,      matSpec[4] = {0.4, 0.4, 0.4, 1.0}
       ,      matEmission[4] = {0.0, 0.0, 0.0, 1.0};
 
+Position posCube;
 Light *light = &spots[0];
+Nave nave;
 
 /**
- * Aux Functions
+ * Handler dos ticks - frames chamados
  */
-
-void printFloat(float f[3])
-{
-	printf("%f %f %f\n", f[0],f[1],f[2]);
-}
-
 void renderScene()
 {
 	z += .1;
@@ -97,6 +85,10 @@ void renderScene()
 	glutSwapBuffers();
 }
 
+/**
+ * Handler do evento de Resize
+ */
+
 void resizeWindow(GLsizei w, GLsizei h)
 {
 	GLfloat aspectRatio;
@@ -114,6 +106,10 @@ void tickTimer(int value) {
 	 glutPostRedisplay();
 	 glutTimerFunc(refreshMillis, tickTimer, 0);
 }
+
+/**
+ * Controle de KEYS do teclado
+ */
 
 void onKeyDown(unsigned char key, int x, int y)
 {
@@ -155,6 +151,10 @@ void onSpecialKeyEnter(int key, int x, int y)
   }
 }
 
+
+/**
+ * Inicializacao da configuracao do OpenGL (glew/glut)
+ */
 void configOpenGL(int argc, char** argv)
 {
 	/* Inicializando janela */
@@ -183,16 +183,19 @@ void configOpenGL(int argc, char** argv)
   glEnable(GL_LIGHTING);
   glEnable(GL_NORMALIZE);
 
+  /* Definindo a iluminação do ambiente */
   glLightModelfv(GL_LIGHT_MODEL_AMBIENT, modelAmb);
   glLightModelf(GL_LIGHT_MODEL_LOCAL_VIEWER, GL_TRUE);
   glLightModelf(GL_LIGHT_MODEL_TWO_SIDE, GL_FALSE);
 
+  /* Materiais a serem usados */
   glMaterialfv(GL_FRONT, GL_AMBIENT, matAmb);
   glMaterialfv(GL_FRONT, GL_DIFFUSE, matDiff);
   glMaterialfv(GL_FRONT, GL_SPECULAR, matSpec);
   glMaterialfv(GL_FRONT, GL_EMISSION, matEmission);
   glMaterialf(GL_FRONT, GL_SHININESS, 10.0);
 
+  /* Inicializacao da Luz */
 	LIGHT_init(light, GL_LIGHT0);
 
 	glShadeModel(GL_SMOOTH);
