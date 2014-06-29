@@ -2,48 +2,65 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <math.h>
-#ifndef M_PI
-	#define M_PI 3.14159265
-#endif
 #include "GL/glew.h"
 #include "GL/freeglut.h"
 #include "lib/glutils.h"
-
-#define TWO_PI	(2*M_PI)
+#ifndef TWO_PI
+	#define TWO_PI	(2*M_PI)
+#endif
 
 /**
  * Config
  */
 
-bool 	fullScreenMode  = false
-  , 	keysPressed[255];
+static bool 	fullScreenMode  = false
+  	, 				keysPressed[255];
 
-int refreshMillis   = 16
-	, iWindowWidth    = 640
-	, cWindowWidth    = 640
-	, iWindowHeight   = 480
-	, cWindowHeight   = 480
-	,  windowPosX     = 50
-	,  windowPosY     = 50;
+static int 	refreshMillis   = 16
+		,		    iWindowWidth    = 640
+		,		    iWindowHeight   = 480
+		,		     windowPosX     = 50
+		,		     windowPosY     = 50;
 
-GLfloat z 								= 1.
-	,			planeSizel[3] 		= {10., 1., 100.}
-	,			planeSizet[3] 		= {10., 1., 100.}
-	,			planeSizer[3] 		= {10., 1., 100.}
-	,			cubeSize[3] 			= {1., 1., 1.}
+static GLfloat z 						= 1.
+		,			planeSizel[3] 		= {10., 1., 100.}
+		,			planeSizet[3] 		= {10., 1., 100.}
+		,			planeSizer[3] 		= {10., 1., 100.}
+		,			cubeSize[3] 			= {1., 1., 1.}
+		,			colorText[4] 			=	{1., 1., 1., 1.}
+		,   	posCube[3] 				= {3., .0, -30.}
+		,			posText[3]				= {.3, 1.7, .0}
+		,			posLeftPlane[3] 	= {-20., .0, -9.}
+		,			posBottonPlane[3] = {.0, .0, -9.}
+		,			posRightPlane[3] 	= {20., .0, -9.};
 
-	,			colorText[4] 			=	{1., 1., 1., 1.}
+static Light spots[] =
+{
+  /* LUZ BRANCA! */
+  {
+    {0.2, 0.2, 0.2, 1.0},  /* ambient */
+    {0.8, 0.8, 0.8, 1.0},  /* diffuse */
+    {0.4, 0.0, 0.0, 1.0},  /* specular */
+    {0.0, 0.0, -30.0, 1.0},  /* position */
+    {0.0, -1.0, 0.0},   /* direction */
+     20.0,
+     60.0,             /* exponent, cutoff */
+    {1.0, 0.0, 0.0},    /* attenuation */
+    {0.0, 1.25, 0.0},   /* translation */
+    {0.0, 0.0, 0.0},    /* rotation */
+    {20.0, 0.0, 40.0},  /* swing */
+    {0.0, 0.0, 0.0},    /* arc */
+    {TWO_PI / 70.0, 0.0, TWO_PI / 140.0}  /* arc increment */
+  }
+};
 
-	,			lAmbient[4] 			=	{.0, .0, .0, 1.}
-	,			lDiffuse[4] 			=	{1., 1., 1., 1.}
-	,			lSpecular[4] 			=	{1., 1., 1., 1.}
+static float modelAmb[4] = {0.2, 0.2, 0.2, 1.0}
+      ,      matAmb[4] = {0.2, 0.2, 0.2, 1.0}
+      ,      matDiff[4] = {0.8, 0.8, 0.8, 1.0}
+      ,      matSpec[4] = {0.4, 0.4, 0.4, 1.0}
+      ,      matEmission[4] = {0.0, 0.0, 0.0, 1.0};
 
-	,			posLight[3]				=	{-10.0, 10., 0.}
-	,   	posCube[3] 				= {3., .0, -30.}
-	,			posText[3]				= {.3, 1.7, .0}
-	,			posLeftPlane[3] 	= {-20., .0, -9.}
-	,			posBottonPlane[3] = {.0, .0, -9.}
-	,			posRightPlane[3] 	= {20., .0, -9.};
+Light *light = &spots[0];
 
 /**
  * Aux Functions
@@ -58,9 +75,10 @@ void renderScene()
 {
 	z += .1;
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	posText[2] = posLight[2] = -z - 5;
 
-	glLightfv(GL_LIGHT0, GL_POSITION, posLight);
+	LIGHT_set(light, GL_LIGHT0);
+
+	posText[2] = -z - 5;
 	TEXT_draw("DAHORA A VIDA", 2., posText, colorText);
 
 	/* CENARIO CONSTRUCTION */
@@ -72,6 +90,12 @@ void renderScene()
 	PLANE_build(planeSizer, posRightPlane, PLANE_SIDE_RIGHT);
 
 	/* CENARIO CONSTRUCTION */
+
+	glPushMatrix();
+		light->rot[2] = -90.;
+	glPopMatrix();
+
+	LIGHT_draw(light);
 
 	glLoadIdentity();
 	glTranslatef(.0, .0, z);
@@ -161,18 +185,20 @@ void configOpenGL(int argc, char** argv)
 
 	/* Habilitando funcionalidades */
 	glEnable(GL_DEPTH_TEST);
-	/*glLightModeli(GL_LIGHT_MODEL_LOCAL_VIEWER, GL_TRUE);*/
-	glEnable(GL_LIGHTING);
-	glEnable(GL_LIGHT0);
 	glEnable(GL_COLOR_MATERIAL);
+  glEnable(GL_LIGHTING);
+  glEnable(GL_NORMALIZE);
 
-	/* Configurando luz ambiente */
-	glLightfv(GL_LIGHT0, GL_AMBIENT, lAmbient);
-	glLightfv(GL_LIGHT0, GL_DIFFUSE, lDiffuse);
-	glLightfv(GL_LIGHT0, GL_SPECULAR, lSpecular);
-	glLightfv(GL_LIGHT0, GL_POSITION, posLight);
+  glLightModelfv(GL_LIGHT_MODEL_AMBIENT, modelAmb);
+  glLightModelf(GL_LIGHT_MODEL_LOCAL_VIEWER, GL_TRUE);
+  glLightModelf(GL_LIGHT_MODEL_TWO_SIDE, GL_FALSE);
 
-	glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);
+  glMaterialfv(GL_FRONT, GL_AMBIENT, matAmb);
+  glMaterialfv(GL_FRONT, GL_DIFFUSE, matDiff);
+  glMaterialfv(GL_FRONT, GL_SPECULAR, matSpec);
+  glMaterialfv(GL_FRONT, GL_EMISSION, matEmission);
+  glMaterialf(GL_FRONT, GL_SHININESS, 10.0);
+
 	glShadeModel(GL_SMOOTH);
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 }
