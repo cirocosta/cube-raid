@@ -1,35 +1,44 @@
 #ifndef GLUTILS_H
-	#define GLUTILS_H
-	#include <stdbool.h>
-	#include <math.h>
-	#include "GL/glew.h"
-	#include "GL/freeglut.h"
-	#include "position.h"
+  #define GLUTILS_H
+  #include <stdbool.h>
+  #include <math.h>
+  #include "GL/glew.h"
+  #include "GL/freeglut.h"
+  #include "position.h"
   #ifndef M_PI
     #define M_PI 3.14159265
   #endif
 
-	typedef enum __PLANE_type
-	{
-	  PLANE_FRONT,
-	  PLANE_SIDE_LEFT,
-	  PLANE_SIDE_RIGHT,
-	  PLANE_TOP,
-	  PLANE_BOTTOM
-	} PLANE_type;
+  typedef enum
+  {
+    KB_A = 97,
+    KB_W = 119,
+    KB_D = 100,
+    KB_S = 115
+  } KBKey;
 
-	void CUBE_build(GLfloat xyz[3],
-	                Position pos,
-	                GLfloat angle);
 
-	void PLANE_build(GLfloat xyz[3],
-	                 Position pos,
-	                 PLANE_type tipo);
+  typedef enum __PLANE_type
+  {
+    PLANE_FRONT,
+    PLANE_SIDE_LEFT,
+    PLANE_SIDE_RIGHT,
+    PLANE_TOP,
+    PLANE_BOTTOM
+  } PLANE_type;
 
-	void TEXT_draw(char * message,
-	               float size,
-	               GLfloat pos[3],
-	               GLfloat color[3]);
+  void CUBE_build(GLfloat xyz[3],
+                  Position pos,
+                  GLfloat angle);
+
+  void PLANE_build(GLfloat xyz[3],
+                   Position pos,
+                   PLANE_type tipo);
+
+  void TEXT_draw(char * message,
+                 float size,
+                 GLfloat pos[3],
+                 GLfloat color[3]);
 
   typedef struct lightRec {
     float amb[4];

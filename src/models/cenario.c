@@ -31,8 +31,8 @@ void CENARIO_consume_map(Queue map)
         key = KEYBOARD_check_input();
         if (key == 27) exit(0);
 
-        NAVE_update(&nave, key);
-        NAVE_show(&nave);
+/*      NAVE_update(&nave, key);
+        NAVE_show(&nave); */
         CENARIO_detect_collision(cb, nave);
 
         usleep(100005);

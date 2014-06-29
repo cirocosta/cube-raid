@@ -43,7 +43,7 @@ void NAVE_destroy(Nave *nave);
  * @param nave Objeto da nave.
  * @param key Keycode do input no momento
  */
-void NAVE_update(Nave *nave, int key);
+void NAVE_update(Nave *nave, bool * keysPressed, float z);
 
 /**
  * Expoe os atributos da Nave

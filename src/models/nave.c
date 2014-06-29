@@ -27,37 +27,19 @@ void NAVE_draw(Nave *nave)
 	CUBE_build(size, nave->pos, .0);
 }
 
-void NAVE_update(Nave *nave, int key)
+void NAVE_update(Nave *nave, bool * keysPressed, float z)
 {
-	nave->pos.x += nave->orientation.x;
-	nave->pos.y += nave->orientation.y;
-	nave->pos.z += nave->vel;
+	if (keysPressed[KB_A])
+		nave->pos.x -= .1;
+	else if (keysPressed[KB_D])
+		nave->pos.x += .1;
 
-	nave->orientation.x = 0;
-	nave->orientation.y = 0;
+	if (keysPressed[KB_W])
+		nave->pos.y += .1;
+	else if (keysPressed[KB_S])
+		nave->pos.y -= .1;
 
-    switch(key) {
-        case 97: /* A */
-    	nave->orientation.x -= 1;
-        break;
-
-        case 119: /* W */
-        nave->orientation.y += 1;
-        break;
-
-        case 100: /* D */
-        nave->orientation.x += 1;
-        break;
-
-        case 115: /* S */
-        nave->orientation.y -= 1;
-        break;
-
-    }
-
-	nave->pos.x += nave->orientation.x;
-	nave->pos.y += nave->orientation.y;
-	nave->pos.z += 1;
+	nave->pos.z = -z - 5;
 }
 
 void NAVE_show(Nave *nave)

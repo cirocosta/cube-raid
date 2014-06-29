@@ -14,16 +14,6 @@
 	#define TWO_PI	(2*M_PI)
 #endif
 
-
-typedef enum
-{
-  KB_A = 97,
-  KB_W = 119,
-  KB_D = 100,
-  KB_S = 115
-} KBKey;
-
-
 Nave nave;
 
 /**
@@ -44,10 +34,7 @@ static int 	refreshMillis   = 16
 static GLfloat z 						= 1.
 		,			cubeSize[3] 			= {1., 1., 1.}
 		,			colorText[4] 			=	{1., 1., 1., 1.}
-		,			posText[3]				= {.3, 1.7, .0}
-		,			posLeftPlane[3] 	= {-20., .0, 0.}
-		,			posBottonPlane[3] = {.0, .0, 0.}
-		,			posRightPlane[3] 	= {20., .0, 0.};
+		,			posText[3]				= {.3, 1.7, .0};
 
 static Light spots[] =
 {
@@ -89,27 +76,19 @@ void printFloat(float f[3])
 void renderScene()
 {
 	z += .1;
-	nave.pos.z = -z - 5;
 	posText[2] = -z - 5;
 	light->trans[2] = -z + 10;
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	if (keysPressed[KB_A])
-		nave.pos.x -= .1;
-	else if (keysPressed[KB_D])
-		nave.pos.x += .1;
-
-
-	if (keysPressed[KB_W])
-		nave.pos.y += .1;
-	else if (keysPressed[KB_S])
-		nave.pos.y -= .1;
-
 	LIGHT_set(light, GL_LIGHT0);
+
 	TEXT_draw("DAHORA A VIDA", 2., posText, colorText);
 	CUBE_build(cubeSize, posCube, .0);
+
+	NAVE_update(&nave, keysPressed, z);
 	NAVE_draw(&nave);
+
 	LIGHT_draw(light);
 
 	glLoadIdentity();
