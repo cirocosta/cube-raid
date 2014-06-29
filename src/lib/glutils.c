@@ -2,13 +2,19 @@
 
 void PLANE_build(GLfloat xyz[3], GLfloat position[3], PLANE_type tipo)
 {
+  int i, j;
+  float h = 16,
+        w = 16;
+  float dw = 1.0 / w;
+  float dh = 1.0 / h;
   glPushMatrix();
     glMatrixMode(GL_MODELVIEW);
     glTranslatef(position[0], position[1], position[2]);
+
     switch (tipo) {
       case PLANE_SIDE_RIGHT:
       case PLANE_SIDE_LEFT:
-        glRotatef(90, .0, .0, 1.);
+        glRotatef(270, .0, .0, 1.);
         break;
       case PLANE_BOTTOM:
       case PLANE_TOP:
@@ -19,8 +25,8 @@ void PLANE_build(GLfloat xyz[3], GLfloat position[3], PLANE_type tipo)
         break;
     }
 
+    glNormal3f(0.0, 0.0, 1.0);
     glBegin(GL_QUADS);
-      glNormal3f(0.0, 0.0, 1.0);
       glVertex3f(xyz[0]* 10.0, xyz[1]*-1.0, xyz[2]* 100.0);
       glVertex3f(xyz[0]*-10.0, xyz[1]*-1.0, xyz[2]* 100.0);
       glVertex3f(xyz[0]*-10.0, xyz[1]*-1.0, xyz[2]*-100.0);
@@ -89,7 +95,7 @@ void TEXT_draw(char * message, float size, GLfloat pos[3], GLfloat color[3])
     glMatrixMode(GL_MODELVIEW);
     glTranslatef(pos[0], pos[1], pos[2]);
     glScalef(size * 0.001, size * 0.001, size * 0.001);
-    glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, color);
+    glColor3f(1.,1.,1.);
 
     while (*message)
       glutStrokeCharacter(GLUT_STROKE_ROMAN, *message++);

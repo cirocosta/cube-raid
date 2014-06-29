@@ -23,16 +23,16 @@ static int 	refreshMillis   = 16
 		,		     windowPosY     = 50;
 
 static GLfloat z 						= 1.
-		,			planeSizel[3] 		= {10., 1., 100.}
-		,			planeSizet[3] 		= {10., 1., 100.}
-		,			planeSizer[3] 		= {10., 1., 100.}
+		,			planeSizel[3] 		= {10., 1., 35.}
+		,			planeSizet[3] 		= {10., 1., 35.}
+		,			planeSizer[3] 		= {10., 1., 35.}
 		,			cubeSize[3] 			= {1., 1., 1.}
 		,			colorText[4] 			=	{1., 1., 1., 1.}
 		,   	posCube[3] 				= {3., .0, -30.}
 		,			posText[3]				= {.3, 1.7, .0}
-		,			posLeftPlane[3] 	= {-20., .0, -9.}
-		,			posBottonPlane[3] = {.0, .0, -9.}
-		,			posRightPlane[3] 	= {20., .0, -9.};
+		,			posLeftPlane[3] 	= {-20., .0, 0.}
+		,			posBottonPlane[3] = {.0, .0, 0.}
+		,			posRightPlane[3] 	= {20., .0, 0.};
 
 static Light spots[] =
 {
@@ -41,12 +41,12 @@ static Light spots[] =
     {0.2, 0.2, 0.2, 1.0},  /* ambient */
     {0.8, 0.8, 0.8, 1.0},  /* diffuse */
     {0.4, 0.0, 0.0, 1.0},  /* specular */
-    {0.0, 0.0, -30.0, 1.0},  /* position */
-    {0.0, -1.0, 0.0},   /* direction */
-     20.0,
-     60.0,             /* exponent, cutoff */
-    {1.0, 0.0, 0.0},    /* attenuation */
-    {0.0, 1.25, 0.0},   /* translation */
+    {0.0, 0.0, -20.0, 1.0},  /* position */
+    {0.0, 0.0, -1.0},   /* direction */
+     20.0,						 /* exponent */
+     90.0,             /* cutoff */
+    {.5, 0.0, 0.0},    /* attenuation */
+    {0.0, 0.0, 0.0},   /* translation */
     {0.0, 0.0, 0.0},    /* rotation */
     {20.0, 0.0, 40.0},  /* swing */
     {0.0, 0.0, 0.0},    /* arc */
@@ -85,22 +85,16 @@ void renderScene()
 
 	CUBE_build(cubeSize, posCube, .0);
 
-	PLANE_build(planeSizel, posLeftPlane, PLANE_SIDE_LEFT);
-	PLANE_build(planeSizet, posBottonPlane, PLANE_TOP);
-	PLANE_build(planeSizer, posRightPlane, PLANE_SIDE_RIGHT);
-
 	/* CENARIO CONSTRUCTION */
-
-	glPushMatrix();
-		light->rot[2] = 90.;
-	glPopMatrix();
 
 	LIGHT_draw(light);
 
 	glLoadIdentity();
 	glTranslatef(.0, .0, z);
-	glutSwapBuffers();
 
+	printf("%f\n", z);
+
+	glutSwapBuffers();
 }
 
 void resizeWindow(GLsizei w, GLsizei h)
