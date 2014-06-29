@@ -87,3 +87,17 @@ void CUBE_build(GLfloat xyz[3], GLfloat position[3], GLfloat angle)
     glEnd();
   glPopMatrix();
 }
+
+
+void TEXT_draw(char * message, float size, GLfloat pos[3], GLfloat color[3])
+{
+  glPushMatrix();
+    glMatrixMode(GL_MODELVIEW);
+    glTranslatef(pos[0], pos[1], pos[2]);
+    glScalef(size * 0.001, size * 0.001, size * 0.001);
+    glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, color);
+
+    while (*message)
+      glutStrokeCharacter(GLUT_STROKE_ROMAN, *message++);
+  glPopMatrix();
+}

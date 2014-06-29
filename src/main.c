@@ -23,6 +23,7 @@ int refreshMillis   = 16
 GLfloat z 								= 1.
 	,   	posCube[3] 				= {3., .0, -30.}
 	,			planeSize[3] 			= {10., 1., 100.}
+	,			colorText[4] 			=	{1., .5, .3, 1.}
 	,			cubeSize[3] 			= {1., 1., 1.}
 	,			posLeftPlane[3] 	= {-20., .0, -9.}
 	,			posBottonPlane[3] = {.0, .0, -9.}
@@ -36,6 +37,7 @@ void renderScene()
 {
 	z += .1;
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	TEXT_draw("DAHORA A VIDA", 2., posCube, colorText);
 
 	/* CENARIO CONSTRUCTION */
 
@@ -134,10 +136,10 @@ void configOpenGL(int argc, char** argv)
 
 	/* Settando cores iniciais */
 	glClearColor(.0, .0, .0, 1.);
-	glClearDepth(1.); /* sets the background depth to farthest (0 - 1]) */
+	glClearDepth(1.);
 
 	/* Habilitando funcionalidades */
-	glEnable(GL_DEPTH_TEST); /* enabling depth testing for z-culling */
+	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
 

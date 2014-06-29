@@ -13,7 +13,17 @@
 	  PLANE_BOTTOM
 	} PLANE_type;
 
-	void CUBE_build(GLfloat xyz[3], GLfloat position[3], GLfloat angle);
-	void PLANE_build(GLfloat xyz[3], GLfloat position[3], PLANE_type tipo);
+	void CUBE_build(GLfloat xyz[3],
+	                GLfloat position[3],
+	                GLfloat angle);
+
+	void PLANE_build(GLfloat xyz[3],
+	                 GLfloat position[3],
+	                 PLANE_type tipo);
+
+	void TEXT_draw(char * message,
+	               float size,
+	               GLfloat pos[3],
+	               GLfloat color[3]);
 
 #endif
