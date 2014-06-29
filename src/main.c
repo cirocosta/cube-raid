@@ -15,6 +15,15 @@
 #endif
 
 
+typedef enum
+{
+  KB_A = 97,
+  KB_W = 119,
+  KB_D = 100,
+  KB_S = 115
+} KBKey;
+
+
 Nave nave;
 
 /**
@@ -84,6 +93,17 @@ void renderScene()
 	posText[2] = -z - 5;
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	if (keysPressed[KB_A])
+		nave.pos.x -= .1;
+	else if (keysPressed[KB_D])
+		nave.pos.x += .1;
+
+
+	if (keysPressed[KB_W])
+		nave.pos.y += .1;
+	else if (keysPressed[KB_S])
+		nave.pos.y -= .1;
 
 	LIGHT_set(light, GL_LIGHT0);
 	TEXT_draw("DAHORA A VIDA", 2., posText, colorText);
