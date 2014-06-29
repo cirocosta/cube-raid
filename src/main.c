@@ -92,7 +92,7 @@ void renderScene()
 	/* CENARIO CONSTRUCTION */
 
 	glPushMatrix();
-		light->rot[2] = -90.;
+		light->rot[2] = 90.;
 	glPopMatrix();
 
 	LIGHT_draw(light);
@@ -198,6 +198,8 @@ void configOpenGL(int argc, char** argv)
   glMaterialfv(GL_FRONT, GL_SPECULAR, matSpec);
   glMaterialfv(GL_FRONT, GL_EMISSION, matEmission);
   glMaterialf(GL_FRONT, GL_SHININESS, 10.0);
+
+	LIGHT_init(light, GL_LIGHT0);
 
 	glShadeModel(GL_SMOOTH);
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);

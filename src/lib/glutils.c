@@ -110,7 +110,6 @@ void LIGHT_init(Light *light, int lt)
   glLightf(lt, GL_QUADRATIC_ATTENUATION, light->atten[2]);
 }
 
-
 void LIGHT_set(Light *light, int lt)
 {
   glPushMatrix();
