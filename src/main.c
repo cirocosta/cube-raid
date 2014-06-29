@@ -56,7 +56,7 @@ static Light spots[] =
     {0.2, 0.2, 0.2, 1.0},  /* ambient */
     {0.8, 0.8, 0.8, 1.0},  /* diffuse */
     {0.4, 0.0, 0.0, 1.0},  /* specular */
-    {0.0, 0.0, -20.0, 1.0},  /* position */
+    {1.0, 0.0, 0.0, 1.0},  /* position */
     {0.0, 0.0, -1.0},   /* direction */
      20.0,						 /* exponent */
      90.0,             /* cutoff */
@@ -91,6 +91,7 @@ void renderScene()
 	z += .1;
 	nave.pos.z = -z - 5;
 	posText[2] = -z - 5;
+	light->trans[2] = -z + 10;
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
