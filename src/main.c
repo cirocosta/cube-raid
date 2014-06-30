@@ -61,6 +61,7 @@ Light *light = &spots[0];
 Nave nave;
 Queue map;
 CircularBuffer *cb;
+char *txtLife[50];
 
 /**
  * Handler dos ticks - frames chamados
@@ -75,7 +76,8 @@ void renderScene()
 
 	LIGHT_set(light, GL_LIGHT0);
 
-	TEXT_draw("DAHORA A VIDA", 2., posText, colorText);
+  sprintf(txtLife, "VIDA: (%d)", nave.hp);
+	TEXT_draw(txtLife, 2., posText, colorText);
 
 	NAVE_update(&nave, keysPressed, z);
 	NAVE_draw(&nave);

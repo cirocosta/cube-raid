@@ -58,6 +58,11 @@ void NAVE_update(Nave *nave, bool * keysPressed, float z)
 	nave->pos.z = -z - 5;
 }
 
+char * NAVE_getLifeText(Nave *nave, char* text)
+{
+	return sprintf (text, "VIDA: (%d)", nave->hp);
+}
+
 void NAVE_show(Nave *nave)
 {
 	printf("Nave em (%g %g %g)\n",
