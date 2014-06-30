@@ -35,10 +35,12 @@ void NAVE_update(Nave *nave, bool * keysPressed, float z)
 		else
 			nave->pos.x -= .1;
 	else if (keysPressed[KB_D])
+	{
 		if (nave->pos.x > 2)
 			nave->pos.x -= .01;
 		else
 			nave->pos.x += .1;
+	}
 
 	if (keysPressed[KB_W])
 		if (nave->pos.y > 2)
@@ -46,10 +48,12 @@ void NAVE_update(Nave *nave, bool * keysPressed, float z)
 		else
 			nave->pos.y += .1;
 	else if (keysPressed[KB_S])
+	{
 		if (nave->pos.y < -2)
 			nave->pos.y += .01;
 		else
 			nave->pos.y -= .1;
+	}
 
 	nave->pos.z = -z - 5;
 }

@@ -19,6 +19,7 @@ typedef struct Defesa
     Position pos;
     int damage;
     int radius;
+    int id;
 } Defesa;
 
 /**

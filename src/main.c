@@ -81,6 +81,7 @@ void renderScene()
 	NAVE_draw(&nave);
 
 	CENARIO_draw(cb, nave);
+	CENARIO_detect_collision(cb, &nave);
 
 	LIGHT_draw(light);
 

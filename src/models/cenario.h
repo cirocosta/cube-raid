@@ -35,7 +35,7 @@ void CENARIO_consume_map(Queue map);
  */
 int CENARIO_collision(float radius1, Position obj1, float radius2, Position obj2);
 int CENARIO_init(CircularBuffer **cb, Queue map);
-int CENARIO_detect_collision(CircularBuffer *cb, Nave nave);
+int CENARIO_detect_collision(CircularBuffer *cb, Nave *nave);
 Queue CENARIO_create(char* name);
 void CENARIO_draw(CircularBuffer *cb, Nave nave);
 #endif

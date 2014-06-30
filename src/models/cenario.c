@@ -4,6 +4,7 @@
 typedef enum { NAVE, TIRO, DEFESA } Tipo;
 #endif
 
+int enemy_id = 0;
 
 void CENARIO_consume_map(Queue map)
 {
@@ -21,7 +22,7 @@ void CENARIO_consume_map(Queue map)
 
 /*      NAVE_update(&nave, key);
         NAVE_show(&nave); */
-        CENARIO_detect_collision(cb, nave);
+        CENARIO_detect_collision(cb, &nave);
 
         usleep(100005);
     }
@@ -60,7 +61,7 @@ int CENARIO_init(CircularBuffer **cb, Queue map)
 }
 
 /* Percorre o CB atrás de colisões */
-int CENARIO_detect_collision(CircularBuffer *cb, Nave nave)
+int CENARIO_detect_collision(CircularBuffer *cb, Nave *nave)
 {
 	int start, collision;
 	Position objPos;
@@ -72,15 +73,20 @@ int CENARIO_detect_collision(CircularBuffer *cb, Nave nave)
 				cb->elems[start].elemento.defesa.pos.y,
 				cb->elems[start].elemento.defesa.pos.z);
 
-		collision = CENARIO_collision(nave.radius, nave.pos, cb->elems[start].elemento.defesa.radius, objPos);
-		if (collision == 1)
-			printf("[GAME-LOG] OCORREU UMA COLISAO!\n");
+		collision = CENARIO_collision(nave->radius, nave->pos, cb->elems[start].elemento.defesa.radius, objPos);
+
+		if (collision == 1 && (cb->elems[start].elemento.defesa.id != enemy_id))
+		{
+			enemy_id = cb->elems[start].elemento.defesa.id;
+			nave->hp -= 1;
+		}
 	}
 	return 0;
 }
 
 Queue CENARIO_create(char* name)
 {
+	int id = 1;
 	FILE* fp;
 	float x, y, z;
 	int hp;
@@ -95,6 +101,7 @@ Queue CENARIO_create(char* name)
 	{
 	    elemento->type = DEFESA;
 	    elemento->elemento.defesa = DEFESA_create(POS_create(x, y, z), hp);
+	    elemento->elemento.defesa.id = id++;
 
 	    queuePut(mapa, *elemento);
 	}
