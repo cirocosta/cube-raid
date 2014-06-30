@@ -28,7 +28,7 @@ static int 	refreshMillis   = 16
 		,		     windowPosY     = 50;
 
 static GLfloat z 						= 1.
-//		,			cubeSize[3] 			= {1., 1., 1.}
+		,			cubeSize[3] 			= {1., 1., 1.}
 		,			colorText[4] 			=	{1., 1., 1., 1.}
 		,			posText[3]				= {.3, 1.7, .0};
 
