@@ -1,3 +1,7 @@
+/**
+ * DEPRECATED
+ */
+
 #include "keyboard.h"
 
 struct termios KEYBOARD_initial_settings,
