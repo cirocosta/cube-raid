@@ -61,12 +61,8 @@
     float spotExp;
     float spotCutoff;
     float atten[3];
-
     float trans[3];
     float rot[3];
-    float swing[3];
-    float arc[3];
-    float arcIncr[3];
   } Light;
 
   /**

@@ -12,10 +12,6 @@
 #include "models/nave.h"
 #include "models/cenario.h"
 
-#ifndef TWO_PI
-	#define TWO_PI	(2*M_PI)
-#endif
-
 /* Config */
 
 static bool 	fullScreenMode  = false
@@ -28,25 +24,21 @@ static int 	refreshMillis   = 16
 		,		     windowPosY     = 50;
 
 static GLfloat z 						= 1.
-		,			cubeSize[3] 			= {1., 1., 1.}
 		,			colorText[4] 			=	{1., 1., 1., 1.}
 		,			posText[3]				= {.3, 1.7, .0};
 
 static Light spots[] = {
   {
-    {0.2, 0.2, 0.2, 1.0},  /* ambient */
-    {0.8, 0.8, 0.8, 1.0},  /* diffuse */
-    {0.4, 0.0, 0.0, 1.0},  /* specular */
-    {1.0, 0.0, 0.0, 1.0},  /* position */
-    {0.0, 0.0, -1.0},   /* direction */
-     20.0,						 /* exponent */
-     90.0,             /* cutoff */
-    {.5, 0.0, 0.0},    /* attenuation */
-    {0.0, 0.0, 0.0},   /* translation */
-    {0.0, 0.0, 0.0},    /* rotation */
-    {20.0, 0.0, 40.0},  /* swing */
-    {0.0, 0.0, 0.0},    /* arc */
-    {TWO_PI / 70.0, 0.0, TWO_PI / 140.0}  /* arc increment */
+    {0.2, 0.2, 0.2, 1.0},   /* ambient */
+    {0.8, 0.8, 0.8, 1.0},   /* diffuse */
+    {0.4, 0.0, 0.0, 1.0},   /* specular */
+    {1.0, 0.0, 0.0, 1.0},   /* position */
+    {0.0, 0.0, -1.0},       /* direction */
+     20.0,						      /* exponent */
+     90.0,                  /* cutoff */
+    {.5, 0.0, 0.0},         /* attenuation */
+    {0.0, 0.0, 0.0},        /* translation */
+    {0.0, 0.0, 0.0},        /* rotation */
   }
 };
 
@@ -61,7 +53,7 @@ Light *light = &spots[0];
 Nave nave;
 Queue map;
 CircularBuffer *cb;
-char *txtLife[50];
+char txtLife[50];
 
 /**
  * Handler dos ticks - frames chamados

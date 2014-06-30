@@ -34,8 +34,7 @@ void NAVE_update(Nave *nave, bool * keysPressed, float z)
 			nave->pos.x += .01;
 		else
 			nave->pos.x -= .1;
-	else if (keysPressed[KB_D])
-	{
+	else if (keysPressed[KB_D]) {
 		if (nave->pos.x > 2)
 			nave->pos.x -= .01;
 		else
@@ -47,8 +46,7 @@ void NAVE_update(Nave *nave, bool * keysPressed, float z)
 			nave->pos.y -= .01;
 		else
 			nave->pos.y += .1;
-	else if (keysPressed[KB_S])
-	{
+	else if (keysPressed[KB_S]){
 		if (nave->pos.y < -2)
 			nave->pos.y += .01;
 		else
@@ -56,11 +54,6 @@ void NAVE_update(Nave *nave, bool * keysPressed, float z)
 	}
 
 	nave->pos.z = -z - 5;
-}
-
-char * NAVE_getLifeText(Nave *nave, char* text)
-{
-	return sprintf (text, "VIDA: (%d)", nave->hp);
 }
 
 void NAVE_show(Nave *nave)
