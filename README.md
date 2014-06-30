@@ -70,7 +70,7 @@ Não conseguimos:
 -	[x] Implementar corretamente a exibição dos elementos dado um campo de visão (conseguimos na terceira!)
 -	[x] Limpar todos os memory leaks (conseguimos no começo da terceira!)
 -	[x] De maneira eficiente e satisfatória captar o input em tempo real do teclado ((conseguimos na terceira!)
--	[x] Fazer os tiros das defesas ()
+-	[x] Fazer os tiros das defesas (conseguimos no final da terceira!)
 
 ### Terceira Entrega
 
@@ -89,7 +89,7 @@ Esta foi sem dúvidas a mais divertida das entregas já que tinhamos então algo
 -	[ ] Adicionar texturas para as fontes e a todo o cenário (não tivemos tempo  :/ )
 - [ ] Limpar todos os memory leaks (conseguimos no começo desta fase porém abandonamos a checagem durante a parte de desenho do jogo. Deveríamos ter investido nisso porém foi um tradeoff)
 -	[	] Mais fases (isto seria animal!)
--	[	] Tiros :T
+-	[	] Tiros ficaram muito rápidos, poderiamos melhorar e colocar gravidadae!
 -	[ ] Transparência, reflexo, sombras .... :P
 
 ## Estrutura
