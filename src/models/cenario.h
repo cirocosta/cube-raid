@@ -8,6 +8,10 @@
 #include <math.h>
 #include <unistd.h>
 #include <string.h>
+
+#include "GL/glew.h"
+#include "GL/freeglut.h"
+
 #include "../lib/queue.h"
 #include "../lib/keyboard.h"
 #include "../lib/circularbuffer.h"
@@ -33,4 +37,5 @@ int CENARIO_collision(float radius1, Position obj1, float radius2, Position obj2
 int CENARIO_init(CircularBuffer **cb, Queue map);
 int CENARIO_detect_collision(CircularBuffer *cb, Nave nave);
 Queue CENARIO_create(char* name);
+void CENARIO_draw(CircularBuffer *cb, Nave nave);
 #endif

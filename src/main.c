@@ -8,7 +8,9 @@
 
 #include "lib/glutils.h"
 #include "lib/position.h"
+
 #include "models/nave.h"
+#include "models/cenario.h"
 
 #ifndef TWO_PI
 	#define TWO_PI	(2*M_PI)
@@ -57,6 +59,8 @@ static float modelAmb[4] = {0.2, 0.2, 0.2, 1.0}
 Position posCube;
 Light *light = &spots[0];
 Nave nave;
+Queue map;
+CircularBuffer *cb;
 
 /**
  * Handler dos ticks - frames chamados
@@ -72,10 +76,11 @@ void renderScene()
 	LIGHT_set(light, GL_LIGHT0);
 
 	TEXT_draw("DAHORA A VIDA", 2., posText, colorText);
-	CUBE_build(cubeSize, posCube, .0);
 
 	NAVE_update(&nave, keysPressed, z);
 	NAVE_draw(&nave);
+
+	CENARIO_draw(cb, nave);
 
 	LIGHT_draw(light);
 
@@ -213,8 +218,12 @@ int main(int argc, char** argv)
 	nave = NAVE_create(
     		POS_create(0., -.8, 0.), 	/* Position */
     		1,							/* Velocity */
-				POS_create(10., 10., 10.),	/* Orientation */
-				10);
+			POS_create(10., 10., 10.),	/* Orientation */
+			10 							/* HP */
+	);
+
+	map = CENARIO_create("map1");
+    CENARIO_init(&cb, map);
 
 	configOpenGL(argc, argv);
 	glutMainLoop();

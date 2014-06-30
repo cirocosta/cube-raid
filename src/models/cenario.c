@@ -11,18 +11,6 @@ void CENARIO_consume_map(Queue map)
 	CircularBuffer *cb;
 	int key;
 
-	/* Creates Aircraft */
-    nave = NAVE_create(
-    		POS_create(0., 0., 0.), 	/* Position */
-    		1,							/* Velocity */
-            POS_create(10., 10., 10.),	/* Orientation */
-            10 							/* HP */
-    );
-
-    /* Initializes Keyboard Input */
-    key = -1;
-    KEYBOARD_init();
-
     /* Enemies initialization */
     CENARIO_init(&cb, map);
 
@@ -113,4 +101,20 @@ Queue CENARIO_create(char* name)
 
     free(elemento);
     return mapa;
+}
+
+void CENARIO_draw(CircularBuffer *cb, Nave nave)
+{
+	int start;
+	Position objPos;
+	GLfloat cubeSize[3] = {1., 1., 1.};
+
+	for(start = cb->start; start < cb->end; start++)
+	{
+		objPos = POS_create(
+				cb->elems[start].elemento.defesa.pos.x,
+				cb->elems[start].elemento.defesa.pos.y,
+				cb->elems[start].elemento.defesa.pos.z);
+		CUBE_build(cubeSize, objPos, .0);
+	}
 }
