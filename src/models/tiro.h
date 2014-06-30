@@ -24,6 +24,12 @@ typedef struct Tiro
 Tiro TIRO_create(Position pos, float vel, Position orientation);
 
 /**
+ * Desenha o tiro
+ * @param tiro tiro
+ */
+void TIRO_draw(Tiro *tiro);
+
+/**
  * Atualiza aspectos do tiro. Metodo chamado enquanto o objeto vive
  * dentro do laco principal.
  */

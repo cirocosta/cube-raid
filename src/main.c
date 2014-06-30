@@ -214,7 +214,7 @@ int main(int argc, char** argv)
     		POS_create(0., -.8, 0.), 	/* Position */
     		1,							/* Velocity */
 			POS_create(10., 10., 10.),	/* Orientation */
-			10 							/* HP */
+			100 							/* HP */
 	);
 
 	map = CENARIO_create("map1");

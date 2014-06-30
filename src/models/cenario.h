@@ -12,6 +12,7 @@
 #include "GL/glew.h"
 #include "GL/freeglut.h"
 
+#include "../models/tiro.h"
 #include "../lib/queue.h"
 #include "../lib/keyboard.h"
 #include "../lib/circularbuffer.h"

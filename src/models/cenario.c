@@ -123,10 +123,15 @@ void CENARIO_draw(CircularBuffer *cb, Nave nave)
 			elemento->elemento.tiro = DEFESA_fire(&(cb->elems[start].elemento.defesa));
 			CB_write(cb, elemento);
 		}
-		objPos = POS_create(
-				cb->elems[start].elemento.defesa.pos.x,
-				cb->elems[start].elemento.defesa.pos.y,
-				cb->elems[start].elemento.defesa.pos.z);
-		CUBE_build(cubeSize, objPos, .0);
+
+		if (cb->elems[start].type == DEFESA) {
+			objPos = POS_create(
+					cb->elems[start].elemento.defesa.pos.x,
+					cb->elems[start].elemento.defesa.pos.y,
+					cb->elems[start].elemento.defesa.pos.z);
+			CUBE_build(cubeSize, objPos, .0);
+		} else {
+			TIRO_draw(&(cb->elems[start].elemento.tiro));
+		}
 	}
 }

@@ -80,7 +80,7 @@ Em seguida tivemos grande dificuldade em adaptar o que já haviamos feito até e
 
 Percebemos o quão não-trivial ficou para testar o que estava sendo feito: como faríamos testes funcionais com o que estava sendo desenhado sendo que não temos, de modo razoável, simular um usuário? Decidimos então por não implementar os testes nessa fase a manter aqueles unitários feitos anteriormente (de modo a checar se o core de nossas estruturas estava de fato correta e poderíamos então prosseguir com elas - sem nos deixar na mão).
 
-Poderíamos melhorar muito nesta etapa: implementar padrões de projeto mais bem consolidados (observer, command, service-locator, entre outros) porém mais tempo seria necessário (muitas provas comeram o tempo :cry: ).
+Poderíamos melhorar muito nesta etapa: implementar padrões de projeto mais bem consolidados (observer, command, service-locator, entre outros), adicionado texturas (fontes por mapeamento de textura seria bem legal!), skybox, entre outros, porém mais tempo seria necessário (muitas provas comeram o tempo :cry: ).
 
 Esta foi sem dúvidas a mais divertida das entregas já que tinhamos então algo de fato pronto para brincar :neckbeard:
 
@@ -89,6 +89,7 @@ Esta foi sem dúvidas a mais divertida das entregas já que tinhamos então algo
 -	[ ] Adicionar texturas para as fontes e a todo o cenário (não tivemos tempo  :/ )
 - [ ] Limpar todos os memory leaks (conseguimos no começo desta fase porém abandonamos a checagem durante a parte de desenho do jogo. Deveríamos ter investido nisso porém foi um tradeoff)
 -	[	] Mais fases (isto seria animal!)
+-	[	] Tiros :T
 -	[ ] Transparência, reflexo, sombras .... :P
 
 ## Estrutura

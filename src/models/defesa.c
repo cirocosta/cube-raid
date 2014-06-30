@@ -23,7 +23,6 @@ int DEFESA_update(Defesa *defesa)
 
 Tiro DEFESA_fire(Defesa *defesa)
 {
-	printf("%s\n", "JUST FIRED!!!");
 	Tiro tiro = TIRO_create(defesa->pos, 1., POS_create(1., 0., 0.));
 
 	return tiro;

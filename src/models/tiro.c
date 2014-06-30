@@ -23,6 +23,11 @@ void TIRO_draw(Tiro *tiro)
 {
     float size[3] = {.1, .1, .1};
 
+    if (tiro->orientation.x == 0)
+        tiro->pos.x += tiro->vel;
+    else
+        tiro->pos.x -= tiro->vel;
+
     CUBE_build(size, tiro->pos, .0);
 }
 
