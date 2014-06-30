@@ -114,10 +114,15 @@ void CENARIO_draw(CircularBuffer *cb, Nave nave)
 {
 	int start;
 	Position objPos;
+	CBData *elemento = malloc(sizeof *elemento);
 	GLfloat cubeSize[3] = {1., 1., 1.};
 
-	for(start = cb->start; start < cb->end; start++)
-	{
+	for(start = cb->start; start < cb->end; start++) {
+		if (DEFESA_update(&(cb->elems[start].elemento.defesa))) {
+			elemento->type = TIRO;
+			elemento->elemento.tiro = DEFESA_fire(&(cb->elems[start].elemento.defesa));
+			CB_write(cb, elemento);
+		}
 		objPos = POS_create(
 				cb->elems[start].elemento.defesa.pos.x,
 				cb->elems[start].elemento.defesa.pos.y,

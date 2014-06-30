@@ -11,12 +11,13 @@
 
 /**
  * Defesa e composta por:
- * 	- 	Posicao
- * 	-	Dano que pode causar
+ *  -   Posicao
+ *  - Dano que pode causar
  */
 typedef struct Defesa
 {
     Position pos;
+    int counter;
     int damage;
     int radius;
     int id;
@@ -35,10 +36,16 @@ Defesa DEFESA_create(Position pos, int damage);
  * laco principal de execucao.
  * @param defesa Defesa a atualizar
  */
-void DEFESA_update(Defesa *defesa);
+int DEFESA_update(Defesa *defesa);
 
-void DEFESA_fire(Defesa *defesa);
+/**
+ * Dispara um tiro a partir das posicoes da defesa.
+ */
+Tiro DEFESA_fire(Defesa *defesa);
 
+/**
+ * Destructor do elemento de defesa
+ */
 void DEFESA_destroy(Defesa *defesa);
 
 #endif

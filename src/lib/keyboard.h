@@ -1,5 +1,6 @@
 /**
- * DEPRECATED
+ * DEPRECATED -> estamos fazendo agora o uso dos callbacks passados
+ * para o glut.
  */
 
 #ifndef KEYBOARD_H

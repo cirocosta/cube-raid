@@ -36,14 +36,21 @@
     PLANE_BOTTOM
   } PLANE_type;
 
+  /**
+   * Desenha um cubo na tela.
+   */
   void CUBE_build(GLfloat xyz[3],
                   Position pos,
                   GLfloat angle);
-
+  /**
+   * Desenha um plano na tela
+   */
   void PLANE_build(GLfloat xyz[3],
                    Position pos,
                    PLANE_type tipo);
-
+  /**
+   * Desenha um text na tela.
+   */
   void TEXT_draw(char * message,
                  float size,
                  GLfloat pos[3],

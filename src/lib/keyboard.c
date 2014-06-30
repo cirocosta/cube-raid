@@ -1,5 +1,6 @@
 /**
- * DEPRECATED
+ * DEPRECATED - estamos fazendo uso agora dos callbacks passados para
+ * o glut.
  */
 
 #include "keyboard.h"

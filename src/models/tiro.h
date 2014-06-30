@@ -1,6 +1,7 @@
 #ifndef TIRO_H
 #define TIRO_H
 #include "../lib/position.h"
+#include "../lib/glutils.h"
 
 /**
  * Reperesenta um projetil lancado por uma defesa.
@@ -26,7 +27,11 @@ Tiro TIRO_create(Position pos, float vel, Position orientation);
  * Atualiza aspectos do tiro. Metodo chamado enquanto o objeto vive
  * dentro do laco principal.
  */
-void TIRO_update(Tiro *tiro, int dir);
+void TIRO_update(Tiro *tiro);
+
+/**
+ * Destrutor do elemento de defesa
+ */
 void TIRO_destroy(Tiro *tiro);
 
 #endif
