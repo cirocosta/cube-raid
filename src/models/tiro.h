@@ -26,6 +26,7 @@ Tiro TIRO_create(Position pos, float vel, Position orientation);
  * Atualiza aspectos do tiro. Metodo chamado enquanto o objeto vive
  * dentro do laco principal.
  */
-void TIRO_update();
+void TIRO_update(Tiro *tiro, int dir);
+void TIRO_destroy(Tiro *tiro);
 
 #endif

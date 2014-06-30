@@ -156,7 +156,6 @@ void onSpecialKeyEnter(int key, int x, int y)
   }
 }
 
-
 /**
  * Inicializacao da configuracao do OpenGL (glew/glut)
  */
@@ -203,6 +202,7 @@ void configOpenGL(int argc, char** argv)
   /* Inicializacao da Luz */
 	LIGHT_init(light, GL_LIGHT0);
 
+  glutSetCursor(GLUT_CURSOR_NONE);
 	glShadeModel(GL_SMOOTH);
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 }

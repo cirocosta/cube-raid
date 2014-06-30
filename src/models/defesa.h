@@ -7,6 +7,7 @@
 #ifndef DEFESA_H
 #define DEFESA_H
 #include "../lib/position.h"
+#include "tiro.h"
 
 /**
  * Defesa e composta por:
@@ -33,6 +34,10 @@ Defesa DEFESA_create(Position pos, int damage);
  * laco principal de execucao.
  * @param defesa Defesa a atualizar
  */
-void DEFESA_update();
+void DEFESA_update(Defesa *defesa);
+
+void DEFESA_fire(Defesa *defesa);
+
+void DEFESA_destroy(Defesa *defesa);
 
 #endif

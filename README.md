@@ -70,6 +70,7 @@ Não conseguimos:
 -	[x] Implementar corretamente a exibição dos elementos dado um campo de visão (conseguimos na terceira!)
 -	[x] Limpar todos os memory leaks (conseguimos no começo da terceira!)
 -	[x] De maneira eficiente e satisfatória captar o input em tempo real do teclado ((conseguimos na terceira!)
+-	[x] Fazer os tiros das defesas ()
 
 ### Terceira Entrega
 
