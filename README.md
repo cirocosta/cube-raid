@@ -63,6 +63,14 @@ Neste momento do projeto a grande dificuldade foi:
 
 Esperamos entao responder tais questões na próxima etapa quando de fato tivermos algo visual.
 
+#### Problemas
+
+Não conseguimos:
+
+-	[x] Implementar corretamente a exibição dos elementos dado um campo de visão (conseguimos na terceira!)
+-	[x] Limpar todos os memory leaks (conseguimos no começo da terceira!)
+-	[x] De maneira eficiente e satisfatória captar o input em tempo real do teclado ((conseguimos na terceira!)
+
 ### Terceira Entrega
 
 Muitas dúvidas quanto ao modo de programar com OpenGL. Como o modo de se pensar é totalmente diferente foi uma grande dificuldade entrar no mindset necessário. Esta foi primeira grande curva de aprendizado.
@@ -75,15 +83,12 @@ Poderíamos melhorar muito nesta etapa: implementar padrões de projeto mais bem
 
 Esta foi sem dúvidas a mais divertida das entregas já que tinhamos então algo de fato pronto para brincar :neckbeard:
 
-
 #### Problemas
 
-Não conseguimos:
-
--	Implementar corretamente a exibição dos elementos dado um campo de visão
--	Limpar todos os memory leaks :(
--	De maneira eficiente e satisfatória captar o input em tempo real do teclado
-
+-	[ ] Adicionar texturas para as fontes e a todo o cenário (não tivemos tempo  :/ )
+- [ ] Limpar todos os memory leaks (conseguimos no começo desta fase porém abandonamos a checagem durante a parte de desenho do jogo. Deveríamos ter investido nisso porém foi um tradeoff)
+-	[	] Mais fases (isto seria animal!)
+-	[ ] Transparência, reflexo, sombras .... :P
 
 ## Estrutura
 
